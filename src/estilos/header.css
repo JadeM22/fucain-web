@@ -1,0 +1,118 @@
+/* ==========================================================
+   HEADER (fijo, 78px)
+   ========================================================== */
+.hdr {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  height: var(--hdr-h);
+}
+/* El fondo vive en un pseudo-elemento: así el desenfoque no "atrapa" el menú móvil (position: fixed) */
+.hdr::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(255, 255, 255, .9);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(11, 22, 49, .1);
+  transition: box-shadow .3s;
+}
+.hdr.solido::before { box-shadow: 0 8px 26px rgba(11, 22, 49, .08); }
+
+.hdr__in {
+  height: 100%; width: min(100% - 2rem, 1400px); margin-inline: auto;
+  display: flex; align-items: center; gap: .6rem;
+}
+
+/* Marcas: UNAH | VOAE | FUCAIN (tarjeta blanca) */
+.hdr__marcas { display: flex; align-items: center; gap: 14px; margin-right: auto; }
+.hdr__marcas > img { height: 34px; width: auto; }
+.hdr__sep { width: 1px; height: 28px; background: rgba(11, 22, 49, .18); flex: none; }
+.hdr__fucain {
+  width: 52px; height: 52px; flex: none; display: grid; place-items: center;
+  background: #fff; border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(11, 22, 49, .14);
+  transition: transform .35s cubic-bezier(.23, 1, .32, 1);
+}
+.hdr__fucain:hover { transform: rotate(-4deg) scale(1.06); }
+.hdr__fucain img { height: 42px; width: auto; }
+
+/* Menú */
+.menu { display: none; align-items: center; }
+.menu a {
+  position: relative; display: block; padding: .6rem .7rem;
+  font: 600 15px/1 var(--f-texto); color: var(--tinta); text-decoration: none;
+}
+.menu a::before {
+  content: ""; position: absolute; inset: 2px 0; z-index: -1;
+  background: var(--amarillo); clip-path: polygon(4% 8%, 100% 0, 96% 100%, 0 92%);
+  transform: scale(0) rotate(-6deg); transition: transform .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+.menu a:hover::before, .menu a.activo::before { transform: scale(1) rotate(-2deg); }
+
+/* Botón "Ver programación" */
+.hdr__cta {
+  display: none; margin-left: .4rem; white-space: nowrap;
+  padding: .85rem 1.5rem; border-radius: 999px;
+  font: 800 15px/1 var(--f-texto); color: var(--tinta); text-decoration: none;
+  background: linear-gradient(135deg, #FBC102, #F5A12F);
+  box-shadow: 0 8px 20px rgba(245, 161, 47, .42);
+  transition: transform .35s cubic-bezier(.23, 1, .32, 1), box-shadow .3s;
+}
+.hdr__cta:hover { transform: scale(1.04); box-shadow: 0 12px 26px rgba(245, 161, 47, .5); }
+
+/* Foco visible */
+.hdr a:focus-visible, .hdr button:focus-visible { outline: 3px solid var(--morado); outline-offset: 3px; }
+
+/* Hamburguesa -> asterisco */
+.burger {
+  width: 48px; height: 48px; position: relative; border: 0; background: var(--tinta);
+  clip-path: polygon(8% 0, 100% 8%, 92% 100%, 0 90%); z-index: 130;
+  transition: background .3s;
+}
+.burger span {
+  position: absolute; left: 11px; right: 11px; height: 4px; top: 22px; background: #fff; border-radius: 2px;
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), background .3s;
+}
+.burger span:nth-child(1) { transform: translateY(-9px); }
+.burger span:nth-child(3) { transform: translateY(9px); }
+.nav-abierto .burger { background: var(--amarillo); }
+.nav-abierto .burger span { background: var(--tinta); }
+.nav-abierto .burger span:nth-child(1) { transform: rotate(60deg); }
+.nav-abierto .burger span:nth-child(2) { transform: rotate(0); }
+.nav-abierto .burger span:nth-child(3) { transform: rotate(-60deg); }
+
+.panel-movil {
+  position: fixed; inset: 0; z-index: 120; background: var(--tinta); color: #fff;
+  display: grid; align-content: center; padding: 6rem 2rem 2rem;
+  clip-path: circle(0 at calc(100% - 40px) 40px);
+  transition: clip-path .7s cubic-bezier(.77, 0, .18, 1);
+  visibility: hidden;
+}
+.nav-abierto .panel-movil { clip-path: circle(150% at calc(100% - 40px) 40px); visibility: visible; }
+.panel-movil li { overflow: hidden; }
+.panel-movil a {
+  display: block; padding: .35rem 0;
+  font-family: var(--f-titulo); font-weight: 900; font-size: clamp(1.7rem, 8vw, 2.4rem);
+  text-transform: uppercase; text-decoration: none; line-height: 1.15;
+  transform: translateY(110%) rotate(6deg); transition: transform .6s cubic-bezier(.34, 1.56, .64, 1);
+  transition-delay: calc(.25s + var(--i) * .07s);
+}
+.nav-abierto .panel-movil a { transform: none; }
+.panel-movil li:nth-child(1) a { color: var(--amarillo); }
+.panel-movil li:nth-child(2) a { color: var(--turquesa); }
+.panel-movil li:nth-child(3) a { color: var(--naranja); }
+.panel-movil li:nth-child(4) a { color: var(--celeste); }
+.panel-movil li:nth-child(5) a { color: var(--verde); }
+.panel-movil li:nth-child(6) a { color: #fff; }
+.panel-movil .estrella { z-index: 0; }
+.panel-movil ul { position: relative; z-index: 1; }
+
+/* El menú completo cabe desde 1120px; por debajo se usa la hamburguesa */
+@media (min-width: 1120px) {
+  .menu { display: flex; }
+  .hdr__cta { display: inline-block; }
+  .burger, .panel-movil { display: none; }
+}
+@media (max-width: 420px) {
+  .hdr__marcas { gap: 10px; }
+  .hdr__marcas > img { height: 26px; }
+  .hdr__fucain { width: 46px; height: 46px; border-radius: 12px; }
+  .hdr__fucain img { height: 37px; }
+}

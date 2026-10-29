@@ -1,0 +1,10 @@
+Fotos de la galeria completa (pagina /galeria). JPG, proporcion 3:2 (ideal 1800x1200 px, menos de 400 KB).
+La primera foto de cada bloque se ve grande.
+
+GENERALES (5):   general-01.jpg ... general-05.jpg
+DIA 1 - 10 nov (9): dia-1-01.jpg ... dia-1-09.jpg
+DIA 2 - 11 nov (9): dia-2-01.jpg ... dia-2-09.jpg
+DIA 3 - 12 nov (9): dia-3-01.jpg ... dia-3-09.jpg
+
+Para cambiar cuantas fotos hay en cada bloque, edita src/data/contenido.js (galeriaCompleta, campo cantidad).
+Si una foto no existe, se ve un marcador de color y su boton Descargar queda desactivado.

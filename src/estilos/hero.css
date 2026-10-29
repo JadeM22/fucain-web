@@ -1,0 +1,91 @@
+/* ==========================================================
+   HERO (portada)
+   ========================================================== */
+.hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: #fff; color: var(--tinta);
+  min-height: 100svh;
+  padding: 220px 0 clamp(90px, 10vw, 140px);
+  display: flex; align-items: flex-start;
+}
+
+/* Manchas de color muy difuminadas */
+.hero__fondo { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.mancha { position: absolute; border-radius: 50%; filter: blur(110px); opacity: .15; }
+.mancha--amarilla { width: min(58vw, 820px); aspect-ratio: 1; left: -14%; top: -22%; background: var(--amarillo); }
+.mancha--lila { width: min(58vw, 820px); aspect-ratio: 1; right: -14%; bottom: -26%; background: #A07BD9; }
+
+/* ----- Contenido central ----- */
+.hero__in {
+  position: relative; z-index: 3; width: min(100% - 2rem, 1100px); margin-inline: auto; text-align: center;
+}
+
+.hero__sub {
+  font: 800 13px/1.4 var(--f-texto); letter-spacing: .3em; text-transform: uppercase;
+  color: #C9391A; /* contraste 5:1 sobre blanco */
+}
+
+/* Título = imagen del logotipo oficial */
+.hero__h1 { margin: 14px 0 0; line-height: 0; }
+.hero__h1 img {
+  display: block; margin-inline: auto;
+  width: clamp(260px, 52vw, 620px); height: auto;
+  filter: drop-shadow(0 6px 14px rgba(11, 22, 49, .22)); /* sombra suave */
+}
+
+.hero__lema {
+  max-width: 24em; margin: 26px auto 0;
+  font: 800 clamp(20px, 2.8vw, 36px)/1.22 var(--f-texto); text-wrap: balance;
+  color: #C9391A; /* respaldo si el navegador no soporta texto con degradado */
+  background: linear-gradient(90deg, #C9391A, #85328A, #0E8A7D);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Botones: son los botones oficiales de la página (clase .btn de base.css) */
+.hero__cta { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+.hero a:focus-visible { outline: 3px solid var(--morado); outline-offset: 4px; }
+
+/* ----- Entrada en cascada: opacidad, desplazamiento y desenfoque ----- */
+.cascada { animation: hero-entra 1.1s cubic-bezier(.23, 1, .32, 1) backwards; animation-delay: calc(var(--i) * 110ms + 250ms); }
+@keyframes hero-entra {
+  from { opacity: 0; translate: 0 40px; filter: blur(8px); }
+  to { opacity: 1; translate: 0 0; filter: blur(0); }
+}
+
+/* ----- Decoración flotante ----- */
+.hero__deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+.circulo { position: absolute; border-radius: 50%; animation: flotar var(--t, 9s) ease-in-out infinite alternate; }
+.circulo--punteado { width: clamp(180px, 22vw, 340px); aspect-ratio: 1; left: -5%; top: 27%; border: 5px dotted var(--amarillo); --t: 10s; }
+.circulo--celeste { width: clamp(110px, 13vw, 210px); aspect-ratio: 1; right: 9%; top: 118px; border: 2px solid var(--celeste); --t: 8s; }
+
+/* Asteriscos PNG: giran lento con la misma animación "girar" de los demás asteriscos de la página */
+.ast {
+  position: absolute; height: auto; max-width: none; user-select: none;
+  transform: rotate(var(--inc, 0deg));
+  animation: girar var(--t, 40s) linear infinite;
+}
+.ast--grupo-grande { width: clamp(150px, 19vw, 290px); left: -2.5%; bottom: -5%; --inc: 14deg; --t: 80s; }
+.ast--rojo-medio { width: clamp(72px, 8.5vw, 128px); right: 3.5%; top: 47%; --inc: -18deg; --t: 44s; }
+.ast--rojo-chico { width: clamp(34px, 3.8vw, 58px); left: 8%; top: 205px; --inc: 32deg; --t: 28s; }
+.ast--grupo-chico { width: clamp(30px, 3.3vw, 50px); right: 21%; top: 178px; --inc: -26deg; --t: 34s; }
+
+/* Confeti */
+.conf { position: absolute; rotate: var(--r); animation: flotar var(--t) ease-in-out var(--d) infinite alternate; }
+.conf--rect { width: var(--w); height: calc(var(--w) * .38); background: var(--c); }
+.conf--rombo { width: var(--w); height: var(--w); background: var(--c); clip-path: polygon(50% 0, 100% 46%, 54% 100%, 0 56%); }
+.conf--arco { width: calc(var(--w) * 1.8); height: calc(var(--w) * .9); border: 5px solid var(--c); border-bottom: 0; border-radius: 999px 999px 0 0; }
+
+/* ----- Móvil: menos decoración y botones apilados ----- */
+@media (max-width: 759px) {
+  .hero { padding-top: 168px; padding-bottom: 96px; }
+  .hero__cta { flex-direction: column; align-items: stretch; gap: 14px; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .circulo--punteado { width: 130px; left: -48px; top: 38%; border-width: 4px; }
+  .circulo--celeste { width: 88px; right: -46px; top: 92px; }
+  .ast--grupo-grande { width: 112px; left: -22px; bottom: -14px; }
+  .ast--rojo-medio { width: 52px; right: 8px; top: 62%; }
+  .ast--rojo-chico, .ast--grupo-chico { display: none; }
+  .conf:nth-child(n+11) { display: none; }
+}

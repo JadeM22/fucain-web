@@ -1,0 +1,81 @@
+/* ==========================================================
+   ESCENARIOS (10 tarjetas: 2 filas de 5, con altura y recorte distintos)
+   ========================================================== */
+.escenarios { padding-top: clamp(3rem, 6vw, 5rem); background: var(--crema); overflow: hidden; }
+
+/* Escritorio: 5 columnas = 2 filas de 5. Las tarjetas tienen proporciones distintas y
+   bajan a distinta altura, como piezas recortadas pegadas sobre el papel. */
+.esc-grid {
+  display: grid; align-items: start;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(2.4rem, 4vw, 3.4rem) clamp(.9rem, 1.5vw, 1.4rem);
+}
+.esc {
+  position: relative;
+  margin-top: var(--bajar, 0px);
+  /* el movimiento al pasar el mouse usa translate/rotate: no choca con el "transform" de .rev */
+  transition: translate .4s cubic-bezier(.34, 1.56, .64, 1), rotate .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+.esc:hover { translate: 0 -8px; rotate: -1.2deg; }
+
+/* Fila 1 */
+.esc:nth-child(1)  { --ar: 3 / 4;    --bajar: 0px; }
+.esc:nth-child(2)  { --ar: 1 / 1;    --bajar: 2.4rem; }
+.esc:nth-child(3)  { --ar: 4 / 5;    --bajar: .6rem; }
+.esc:nth-child(4)  { --ar: 1 / 1.1;  --bajar: 3rem; }
+.esc:nth-child(5)  { --ar: 3 / 4;    --bajar: 1.2rem; }
+/* Fila 2 */
+.esc:nth-child(6)  { --ar: 1 / 1;    --bajar: .8rem; }
+.esc:nth-child(7)  { --ar: 3 / 4;    --bajar: 0px; }
+.esc:nth-child(8)  { --ar: 1 / 1.1;  --bajar: 2.6rem; }
+.esc:nth-child(9)  { --ar: 4 / 5;    --bajar: .4rem; }
+.esc:nth-child(10) { --ar: 1 / 1;    --bajar: 2rem; }
+
+.esc .ph { aspect-ratio: var(--ar, 4 / 3); }
+
+/* Un recorte irregular distinto para cada foto y los colores de la paleta en ciclo */
+.esc:nth-child(1) .ph  { clip-path: polygon(0 6%, 88% 0, 100% 90%, 12% 100%); --c: var(--turquesa); }
+.esc:nth-child(2) .ph  { clip-path: polygon(8% 0, 100% 10%, 92% 100%, 0 88%); --c: var(--rojo); --on: #fff; }
+.esc:nth-child(3) .ph  { clip-path: polygon(0 0, 94% 8%, 100% 100%, 10% 92%); --c: var(--amarillo); }
+.esc:nth-child(4) .ph  { clip-path: polygon(10% 4%, 100% 0, 90% 94%, 0 100%); --c: var(--morado); --on: #fff; }
+.esc:nth-child(5) .ph  { clip-path: polygon(0 10%, 92% 0, 100% 96%, 6% 100%); --c: var(--verde); }
+.esc:nth-child(6) .ph  { clip-path: polygon(6% 0, 100% 6%, 94% 100%, 0 94%); --c: var(--naranja); }
+.esc:nth-child(7) .ph  { clip-path: polygon(0 4%, 97% 0, 100% 92%, 4% 100%); --c: var(--celeste); }
+.esc:nth-child(8) .ph  { clip-path: polygon(5% 0, 100% 8%, 95% 100%, 0 90%); --c: var(--marino); --on: #fff; }
+.esc:nth-child(9) .ph  { clip-path: polygon(0 7%, 90% 0, 100% 100%, 8% 94%); --c: var(--rojo); --on: #fff; }
+.esc:nth-child(10) .ph { clip-path: polygon(3% 0, 100% 5%, 96% 100%, 0 95%); --c: var(--turquesa); }
+
+/* Estrella con el número */
+.esc__num {
+  position: absolute; top: -14px; left: -6px; z-index: 5;
+  font-family: var(--f-titulo); font-weight: 900; font-size: .9rem; color: #fff; background: var(--marino);
+  width: 54px; height: 54px; display: grid; place-items: center; padding-top: 4px;
+  clip-path: polygon(50% 0, 62% 30%, 98% 35%, 70% 58%, 80% 96%, 50% 74%, 20% 96%, 30% 58%, 2% 35%, 38% 30%);
+}
+.esc:nth-child(3n+2) .esc__num { background: var(--morado); }
+.esc:nth-child(3n) .esc__num { background: var(--rojo); }
+
+.esc__txt { padding: .9rem .3rem 0; }
+.esc__txt h3 {
+  font-family: var(--f-titulo); font-weight: 800; text-transform: uppercase; line-height: 1.2;
+  font-size: clamp(.78rem, 1vw, .92rem); overflow-wrap: anywhere;
+}
+.esc__txt p { margin-top: .45rem; font-size: clamp(.82rem, .95vw, .92rem); line-height: 1.45; }
+
+/* Tablet: 2 columnas; cada tercera tarjeta ocupa todo el ancho */
+@media (max-width: 1099px) {
+  .esc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 1.4rem; }
+  .esc:nth-child(n) { --ar: 1 / 1.05; --bajar: 0px; }
+  .esc:nth-child(3n+1) { grid-column: span 2; --ar: 16 / 9; }
+  .esc:nth-child(3n) { --bajar: 2.2rem; }
+  .esc__txt h3 { font-size: 1rem; }
+  .esc__txt p { font-size: .95rem; }
+}
+
+/* Móvil: una columna con las tarjetas corridas a un lado y al otro */
+@media (max-width: 599px) {
+  .esc-grid { grid-template-columns: 1fr; gap: 2.4rem; }
+  .esc:nth-child(n) { grid-column: span 1; --ar: 4 / 3; --bajar: 0px; }
+  .esc:nth-child(odd) { margin-right: 1.4rem; }
+  .esc:nth-child(even) { margin-left: 1.4rem; }
+}

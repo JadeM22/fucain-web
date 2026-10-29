@@ -1,0 +1,6 @@
+Pon aqui el archivo .zip con TODAS las fotos para descargar, con este nombre exacto:
+
+fotos-fucain-2026.zip
+
+Mientras no exista, los botones de descarga dicen "Proximamente".
+(El nombre se cambia en src/data/contenido.js, descargaFotos.)

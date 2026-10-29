@@ -1,0 +1,12 @@
+Pon aqui los PDF de los cronogramas con estos nombres exactos:
+
+cronograma-general.pdf
+componente-academico.pdf
+musica.pdf
+teatro.pdf
+danza.pdf
+artes-visuales.pdf
+literatura.pdf
+cinematografia.pdf
+
+Mientras un PDF no exista, su boton dira "Proximamente".

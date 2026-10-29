@@ -1,0 +1,71 @@
+/* ==========================================================
+   GALERÍA (mosaico 3:2)
+   ========================================================== */
+.galeria { overflow: hidden; }
+.mosaico { display: grid; gap: clamp(.6rem, 1.4vw, 1rem); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 760px) { .mosaico { grid-template-columns: repeat(4, 1fr); } }
+.tile { position: relative; padding: 0; border: 0; background: none; aspect-ratio: 3 / 2; display: block; width: 100%; }
+.tile:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.tile .ph { position: absolute; inset: 0; transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.tile:nth-child(6n+1) .ph { clip-path: polygon(0 0, 100% 3%, 98% 100%, 2% 97%); }
+.tile:nth-child(6n+2) .ph { clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 96%); }
+.tile:nth-child(6n+3) .ph { clip-path: polygon(0 3%, 97% 0, 100% 97%, 3% 100%); }
+.tile:nth-child(6n+4) .ph { clip-path: polygon(2% 0, 100% 4%, 100% 100%, 0 96%); }
+.tile:nth-child(6n+5) .ph { clip-path: polygon(0 0, 98% 4%, 96% 100%, 0 100%); }
+.tile:nth-child(6n) .ph { clip-path: polygon(4% 3%, 100% 0, 100% 97%, 0 100%); }
+.tile:nth-child(8n+1) .ph { --c: var(--turquesa); } .tile:nth-child(8n+2) .ph { --c: var(--rojo); --on: #fff; }
+.tile:nth-child(8n+3) .ph { --c: var(--amarillo); } .tile:nth-child(8n+4) .ph { --c: var(--morado); --on: #fff; }
+.tile:nth-child(8n+5) .ph { --c: var(--verde); } .tile:nth-child(8n+6) .ph { --c: var(--naranja); }
+.tile:nth-child(8n+7) .ph { --c: var(--celeste); } .tile:nth-child(8n) .ph { --c: var(--marino); --on: #fff; }
+/* Hover: semitono de color FUCAIN */
+.tile::after {
+  content: "Ver"; position: absolute; inset: 0; z-index: 3; display: grid; place-items: center;
+  font-family: var(--f-titulo); font-weight: 900; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: .1em;
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+  background: radial-gradient(circle, var(--c-h, rgba(232, 78, 43, .85)) 3px, transparent 3.6px) 0 0 / 10px 10px;
+}
+.tile:hover::after, .tile:focus-visible::after { opacity: 1; }
+.tile:nth-child(3n+2) { --c-h: rgba(18, 172, 156, .9); }
+.tile:nth-child(3n) { --c-h: rgba(133, 50, 135, .9); }
+.tile:hover .ph, .tile:focus-visible .ph { transform: scale(.96) rotate(-1deg); }
+.tile:hover .ph > img { filter: grayscale(1) contrast(1.6); }
+.tile:hover .ph::before { opacity: 0; }
+
+.lightbox { position: fixed; inset: 0; z-index: 300; background: rgba(21, 36, 66, .94); display: none; place-items: center; padding: 1rem; }
+.lightbox.abierto { display: grid; animation: aparecer .25s; }
+@keyframes aparecer { from { opacity: 0; } }
+.lightbox__marco { width: min(94vw, 1100px, calc((100svh - 9rem) * 1.5)); aspect-ratio: 3 / 2; position: relative; }
+.lightbox__marco .ph { position: absolute; inset: 0; clip-path: polygon(0 1%, 100% 0, 99% 100%, 1% 99%); animation: aparecer .3s; }
+.lightbox__marco .ph > img { filter: none; mix-blend-mode: normal; }
+.lightbox__marco .ph::before { display: none; }
+.lightbox__pie { position: absolute; left: 0; right: 0; bottom: 1.2rem; text-align: center; color: #fff; font-weight: 600; letter-spacing: .1em; }
+.lb-btn {
+  position: absolute; width: 52px; height: 52px; border: 0; background: var(--amarillo); color: var(--marino);
+  display: grid; place-items: center; clip-path: polygon(8% 0, 100% 8%, 92% 100%, 0 92%);
+  transition: transform .2s;
+}
+.lb-btn:hover { transform: scale(1.12) rotate(-4deg); }
+.lb-btn svg { width: 26px; height: 26px; }
+.lb-cerrar { top: 1rem; right: 1rem; background: var(--rojo); color: #fff; }
+.lb-prev { left: .8rem; top: 50%; translate: 0 -50%; }
+.lb-next { right: .8rem; top: 50%; translate: 0 -50%; }
+
+/* Botones bajo la galería de la portada */
+.galeria__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.2rem; margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+
+/* Botón "Descargar" del visor (siempre visible; se desactiva si la foto aún no existe) */
+.lb-btn.lb-descargar {
+  right: 1rem; bottom: 1rem; width: auto; height: 52px; padding: 0 1.2rem;
+  display: inline-flex; align-items: center; gap: .55rem;
+  font: 800 .74rem/1 var(--f-titulo); letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  color: var(--marino); background: var(--amarillo);
+}
+.lb-descargar svg { width: 20px; height: 20px; }
+.lb-descargar--off { background: rgba(255, 255, 255, .3); color: #fff; cursor: not-allowed; }
+.lb-descargar--off:hover { transform: none; }
+@media (max-width: 640px) {
+  /* en móvil el botón va centrado sobre el contador para que no se encimen */
+  .lb-btn.lb-descargar { right: auto; left: 50%; translate: -50% 0; bottom: 3.6rem; }
+}
+/* "Próximamente" legible sobre fondo claro */
+.galeria__acciones .btn--off { --bg: rgba(31, 58, 107, .14); }

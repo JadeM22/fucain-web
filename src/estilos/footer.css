@@ -1,0 +1,21 @@
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.pie { position: relative; background: var(--marino); color: #fff; padding: clamp(3rem, 6vw, 4.5rem) 0 1.4rem; overflow: hidden; }
+.pie::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10px; background: linear-gradient(90deg, var(--amarillo) 0 16.6%, var(--turquesa) 0 33.3%, var(--rojo) 0 50%, var(--morado) 0 66.6%, var(--verde) 0 83.3%, var(--celeste) 0); }
+.pie__grid { display: grid; gap: 2.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); position: relative; z-index: 2; }
+.pie__logos { display: flex; align-items: center; flex-wrap: wrap; gap: 1.2rem; }
+.pie__logos .l-f { height: 120px; width: auto; filter: brightness(0) invert(1); }
+.pie__logos .chip { background: #fff; padding: .55rem 1rem; clip-path: polygon(3% 0, 100% 6%, 97% 100%, 0 94%); display: grid; place-items: center; }
+.pie__logos .chip img { height: 44px; width: auto; }
+.pie h4 { font-family: var(--f-titulo); font-weight: 800; text-transform: uppercase; font-size: .85rem; letter-spacing: .1em; color: var(--amarillo); margin-bottom: 1rem; }
+.pie li + li { margin-top: .4rem; }
+.pie a { text-decoration: none; }
+.pie li a:hover { color: var(--amarillo); text-decoration: underline; text-underline-offset: 4px; }
+.redes { display: flex; gap: .8rem; margin-top: 1rem; }
+.redes a { width: 46px; height: 46px; display: grid; place-items: center; background: var(--c); color: var(--marino); clip-path: polygon(8% 0, 100% 10%, 92% 100%, 0 90%); transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.redes a:nth-child(1) { --c: var(--amarillo); } .redes a:nth-child(2) { --c: var(--turquesa); } .redes a:nth-child(3) { --c: var(--celeste); }
+.redes a:hover { transform: translateY(-5px) rotate(-8deg) scale(1.1); }
+.redes svg { width: 22px; height: 22px; fill: currentColor; }
+.pie__copy { position: relative; z-index: 2; margin-top: 2.4rem; padding-top: 1.2rem; border-top: 2px dashed rgba(255, 255, 255, .25); text-align: center; font-size: .88rem; opacity: .9; }
+.pie .estrella { opacity: .9; }

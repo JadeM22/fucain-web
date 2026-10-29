@@ -1,0 +1,7 @@
+Pon aqui las fotos (JPG) con estos nombres exactos:
+
+galeria-01.jpg ... galeria-09.jpg   (proporcion 3:2)
+talento.jpg
+disciplina-musica.jpg disciplina-teatro.jpg disciplina-danza.jpg disciplina-artes-visuales.jpg disciplina-literatura.jpg disciplina-cinematografia.jpg (opcionales)
+
+Mientras no existan, la pagina muestra marcadores de color.

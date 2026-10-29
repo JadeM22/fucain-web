@@ -1,0 +1,17 @@
+/* ==========================================================
+   CARRUSEL DE UNIVERSIDADES
+   ========================================================== */
+.unis { background: var(--crema); padding-block: clamp(3rem, 6vw, 5rem); overflow: hidden; }
+.marquee { position: relative; overflow: hidden; padding-block: 1rem; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee__track { display: flex; gap: 1.4rem; width: max-content; animation: marquee 45s linear infinite; }
+.marquee:hover .marquee__track, .marquee:focus-within .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(calc(-50% - .7rem)); } }
+.uni {
+  flex: none; width: 240px; height: 140px; display: grid; place-items: center; padding: 1rem 1.4rem;
+  background: #fff; box-shadow: 0 6px 0 rgba(31, 58, 107, .1);
+  clip-path: polygon(2% 0, 100% 5%, 98% 100%, 0 95%);
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.uni:nth-child(even) { clip-path: polygon(0 5%, 98% 0, 100% 95%, 2% 100%); }
+.uni:hover { transform: translateY(-6px) rotate(-2deg) scale(1.05); }
+.uni img { height: 100%; width: 100%; object-fit: contain; }

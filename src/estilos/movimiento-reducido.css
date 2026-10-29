@@ -1,0 +1,12 @@
+/* ==========================================================
+   Movimiento reducido
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .rev { opacity: 1; transform: none; }
+  .logo-armado .pz { opacity: 1 !important; }
+  .marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+  .marquee__track [aria-hidden="true"] { display: none; }
+  .panel-movil a { transform: none; }
+}

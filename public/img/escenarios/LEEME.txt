@@ -1,0 +1,17 @@
+Pon aqui las fotos de los escenarios (JPG, ideal 1600x1000 px y menos de 400 KB)
+con estos nombres exactos:
+
+01-cise.jpg               Anfiteatro del Edificio CISE
+02-padre-trino.jpg        Teatro Padre Trino
+03-cuatro-culturas.jpg    Plaza Cuatro Culturas
+04-edificio-1847.jpg      Edificio 1847 "Puente Aereo"
+05-jose-cecilio.jpg       Auditorio "Jose Cecilio del Valle"
+06-auditorio-1-c3.jpg     Auditorio No. 1, Edificio C3
+07-auditorio-2-c3.jpg     Auditorio No. 2, Edificio C3
+08-cinemateca.jpg         Cinemateca "Enrique Ponce Garay"
+09-plaza-registro.jpg     Anfiteatro de Plaza Registro
+10-alma-mater.jpg         Lobby y Mezanine, edificio Alma Mater
+
+Las fotos se recortan solas con la forma irregular de cada tarjeta.
+Si una foto no existe, la pagina muestra un marcador de color (sin error).
+Los nombres de los escenarios se editan en src/data/contenido.js

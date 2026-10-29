@@ -1,0 +1,25 @@
+/* ==========================================================
+   GUIRNALDA DE PAPEL PICADO (bajo el encabezado)
+   ========================================================== */
+.guirnalda {
+  position: fixed; left: 0; right: 0; top: calc(var(--hdr-h) - 1px); height: 0;
+  z-index: 95; pointer-events: none;
+}
+.tira {
+  position: absolute; top: 0;
+  rotate: var(--inc);              /* inclinación base de cada tira */
+  transform-origin: 50% 0;         /* cuelgan desde arriba */
+  /* 1) caen desde arriba con 0.05s de desfase  2) luego se balancean como péndulo */
+  animation:
+    tira-cae .95s cubic-bezier(.34, 1.45, .64, 1) var(--d) backwards,
+    tira-columpio var(--s) ease-in-out calc(var(--d) + .95s) infinite alternate;
+}
+@keyframes tira-cae {
+  from { translate: 0 -220%; opacity: 0; }
+  35% { opacity: 1; }
+  to { translate: 0 0; opacity: 1; }
+}
+@keyframes tira-columpio {
+  from { rotate: calc(var(--inc) - 1.2deg); }
+  to { rotate: calc(var(--inc) + 1.2deg); }
+}

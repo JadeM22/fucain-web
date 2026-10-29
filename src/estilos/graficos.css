@@ -1,0 +1,27 @@
+/* ==========================================================
+   GRÁFICOS DECORATIVOS (public/img/graficos/)
+   ========================================================== */
+.grafico {
+  position: absolute; z-index: 1; height: auto; max-width: none;
+  pointer-events: none; user-select: none;
+  animation: grafico-flota var(--t, 9s) ease-in-out infinite alternate;
+}
+/* Movimiento con "transform" (la propiedad "translate" la usa el parallax) */
+@keyframes grafico-flota {
+  from { transform: translateY(-10px) rotate(-2.5deg); }
+  to { transform: translateY(12px) rotate(2.5deg); }
+}
+
+/* Banner de talento: asteriscos pequeños en el margen izquierdo (sin tapar el texto) */
+.g-talento { width: clamp(56px, 5.5vw, 84px); left: 1%; top: 46%; --t: 11s; }
+
+/* Entre secciones: contenedor sin alto, centrado sobre el borde */
+.separador { position: relative; height: 0; z-index: 4; }
+.separador .grafico {
+  width: var(--w);
+  top: calc(var(--w) * var(--k) * -0.5);
+  z-index: 4;
+}
+
+@media (max-width: 1100px) { .g-talento { display: none; } }
+
