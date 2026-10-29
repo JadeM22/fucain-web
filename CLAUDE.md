@@ -1,0 +1,62 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project
+
+Website for FUCAIN 2026 (Festival Universitario de la Cultura y el Arte para la Identidad Nacional, UNAH/VOAE). React 18 + Vite 5 + react-router-dom 6, plain JS (no TypeScript), plain CSS. `LEEME.md` is the beginner-oriented maintainer guide (in Spanish) — keep it in sync when changing file names, asset locations, or where content lives.
+
+**All code, identifiers, comments, file names, and docs are in Spanish** (`componentes/`, `paginas/`, `estilos/`, `useRevelar`, `existe`, `vacio`…). Follow that convention.
+
+## Commands
+
+- `npm run dev` — dev server (http://localhost:5173)
+- `npm run build` — production build into `dist/` (this folder is what gets delivered to the university server)
+- `npm run preview` — serve the built `dist/`
+
+There is no test suite, linter, or formatter configured.
+
+## Architecture
+
+**Deployment constraint drives several design choices:** the built site must work when dropped into *any* folder of a static server with no configuration (and even partially from `file://`). Hence:
+- `vite.config.js` uses `base: './'` (relative paths).
+- `App.jsx` uses `HashRouter` (routes look like `index.html#/disciplinas`). Routes: `/`, `/disciplinas`, `/galeria`; unknown routes redirect to `/`. Page titles are set in `App.jsx` (`TITULOS`).
+- Always build URLs to `public/` files with `ruta()` from `src/utils/ruta.js` (prefixes `import.meta.env.BASE_URL`), never with absolute `/...` paths.
+- Because the hash is taken by the router, in-page anchors to home-page sections go through `componentes/EnlaceSeccion.jsx` (scrolls by code, navigating to `/` first if needed) rather than `href="#id"`.
+
+**Content vs. code:** editable texts and data (countdown date, contact, social links, venues, counters, gallery, universities, schedule cards, disciplines, map, `galeriaCompleta`, `descargaFotos`) live in `src/data/contenido.js`. Components import from there; prefer adding data there over hard-coding in components. Longer fixed copy (hero title, etc.) lives inside the section components.
+
+**Assets are optional and degrade gracefully.** Photos, PDFs, and the zip download are added by non-developers into `public/` using exact file names (listed in `LEEME.md` and the `LEEME.txt` in each `public/` subfolder). Components must handle missing files:
+- `Foto.jsx` shows a colored placeholder labeled with the missing file name on `onError`.
+- `BotonPdf.jsx` does a `HEAD` request and shows "Próximamente" if the PDF is missing or not `application/pdf` (skipped under `file://`).
+- Full gallery photo names are generated from `galeriaCompleta` (`prefijo` + `cantidad` → `general-01.jpg`…) in `src/utils/galeria.js`.
+
+**Styling:** one CSS file per component/page in `src/estilos/`, all imported globally in `src/main.jsx` in a deliberate order — `base.css` first (brand color tokens and fonts in `:root`), `movimiento-reducido.css` last so its `prefers-reduced-motion` overrides win. New stylesheets must be added to that import list before `revelado.css`/`movimiento-reducido.css`.
+
+**Motion/animation:** scroll reveal is via `useRevelar` (adds class `in` to `.rev` elements); parallax via `useParallax`. Respect reduced motion using `reducirMovimiento()` from `utils/ruta.js`. Decorative randomness uses the seeded generator in `utils/azar.js` so decoration looks identical on every load — don't use `Math.random()` for layout/decoration.
+
+## Design rules (mandatory)
+
+- **Palette only:** tinta `#0B1631`, rojo `#E84E2B`, naranja `#F5A12F`, amarillo `#FBC102`, verde `#66B32F`, turquesa `#12AC9C`, celeste `#7ECBE3`, morado `#85328A`. Use the CSS variables in `base.css` `:root` (`var(--rojo)`…), not raw hex. (`--marino #1F3A6B` and `--crema` also exist there and are used by `.btn` and backgrounds.)
+- **Fonts:** only the ones already loaded in `index.html` from Google Fonts — **Unbounded** (titles, buttons; `var(--f-titulo)`) and **Poppins** (body text; `var(--f-texto)`). Don't add other fonts.
+- **Shapes:** asymmetric, cut-out (`clip-path: polygon(...)`) and slightly tilted (`rotate(-2deg)`-style), like the FUCAIN logo. No rounded corners, no pills, no perfect circles.
+- **Reuse, don't invent:** use the existing pieces and their CSS — `BotonFucain` (all buttons; `color`/`inc` props), the card styles of each section, `Grafico`/`SeparadorConfeti` (spinning asterisk PNGs in `public/img/graficos/`), `Guirnalda` (papel picado), `ConfetiFlotante` (confetti), `Estrella`. No new visual styles.
+- **Header logo:** the FUCAIN logo in the header goes with no background and no card.
+- **Always respect** `prefers-reduced-motion` (add overrides to `movimiento-reducido.css`), accessibility (alt text, decorative images `alt="" aria-hidden="true"`, visible focus, keyboard nav), and mobile (< 760px; the existing breakpoint is `max-width: 759px`).
+
+### Banner decorativo
+
+The red home-page band between sections ("Tu talento es identidad", photo + "Entrada libre y gratuita" ribbon) is **Banner decorativo**: component `BannerDecorativo.jsx`, styles `banner-decorativo.css` (classes `.banner-decorativo*`, asterisk `.g-banner-decorativo` in `graficos.css`), section `id="banner-decorativo"`, texts in `bannerDecorativo` in `contenido.js`. It was formerly "BannerTalento"/`#talento`; only the photo file keeps the old name (`public/img/fotos/talento.jpg`). Its "Ver cronogramas" button is `BotonFucain as={EnlaceSeccion} id="cronograma"`.
+
+### Footer rules
+
+`Footer.jsx` is shared by every page; its data is `pie` in `contenido.js`.
+- Background `var(--tinta)` on all pages, top edge cut with `corte-der`.
+- Content is **only** 3 logos, left to right: FUCAIN (`fucain-azul.png` turned white with `filter: brightness(0) invert(1)` — don't change it), VOAE (`voae-blanco.png`), UNAH (`unah-blanco.png`), with `alt="FUCAIN"`/`"VOAE"`/`"UNAH"`, plus one small, discreet line "© 2026 UNAH – VOAE". No links, social media, contact info or other text.
+- Logos centered and vertically aligned, thin semi-transparent white vertical separators between them; heights are tuned per logo in `footer.css` so they look a similar size. If a white logo is missing, `onError` swaps in the color version (`respaldo`).
+- Mobile (< 760px): logos stacked in a centered column with horizontal separators.
+- Decoration: one large asterisk PNG partly cut off in a corner and one small one in another, using the shared `.ast` class (same `girar` rotation as the hero), `pointer-events: none`, `aria-hidden="true"`, never covering the logos. Reduced motion stops the rotation (global rule in `movimiento-reducido.css`).
+
+Known code that currently breaks these rules (fix when touching it): `header.css` — `.hdr__cta` is a pill (`border-radius: 999px`); `hero.css` — `.mancha` and `.circulo` are perfect circles, `.conf--arco` uses rounded arcs; `base.css` — `border-radius` on `:focus-visible` and `.saltar`.
+
+`referencias/` holds design source art (posters, original logos) and is not published; optimized copies used by the site live in `public/img/`.

@@ -10,7 +10,6 @@ const MENU = [
   ['cronograma', 'Cronograma'],
   ['galeria', 'Galería'],
   ['universidades', 'Universidades'],
-  ['contacto', 'Contacto'],
 ];
 
 export default function Header() {

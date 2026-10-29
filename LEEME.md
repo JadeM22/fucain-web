@@ -19,7 +19,7 @@ Todo está dentro de la carpeta `public/`. **No hay que tocar código**: solo co
 
 **Fotos** → `public/img/fotos/` (JPG, ideal 1800×1200 px y menos de 400 KB)
 `galeria-01.jpg` … `galeria-09.jpg` (proporción 3:2)
-`talento.jpg` (vertical)
+`talento.jpg` (vertical, foto del banner decorativo)
 Opcionales (fondo de la página de disciplinas): `disciplina-musica.jpg`, `disciplina-teatro.jpg`,
 `disciplina-danza.jpg`, `disciplina-artes-visuales.jpg`, `disciplina-literatura.jpg`, `disciplina-cinematografia.jpg`
 
@@ -29,13 +29,13 @@ Opcionales (fondo de la página de disciplinas): `disciplina-musica.jpg`, `disci
 
 **Fotos de escenarios** → `public/img/escenarios/` (`01-cise.jpg` … `10-alma-mater.jpg`; la lista exacta está en el `LEEME.txt` de esa carpeta)
 
-**Logos** → `public/img/logos/` · **Logos de universidades** → `public/img/universidades/`
-**Gráficos decorativos** (asteriscos y confeti) → `public/img/graficos/` (`asteriscos-1/2/3.png` se usan entre secciones y en el banner de talento; `asterisco-rojo.png` y `asterisco-grupo.png` son los asteriscos que giran en la portada)
+**Logos** → `public/img/logos/` (el footer usa `voae-blanco.png` y `unah-blanco.png`; si faltan, muestra las versiones a color) · **Logos de universidades** → `public/img/universidades/`
+**Gráficos decorativos** (asteriscos y confeti) → `public/img/graficos/` (`asteriscos-1/2/3.png` se usan entre secciones y en el banner decorativo; `asterisco-rojo.png` y `asterisco-grupo.png` son los asteriscos que giran en la portada)
 
 ## 3. Dónde cambiar los textos
 Abre **`src/data/contenido.js`**. Ahí están, con comentarios en español:
 - fecha de inicio de la cuenta regresiva
-- contacto (correo, teléfono, dirección) y redes sociales
+- los 3 logos del pie de página (footer) y la línea "© 2026 UNAH – VOAE" (`pie`)
 - los 10 escenarios (número, nombre, descripción corta y archivo de foto)
 - los 4 contadores (número, etiqueta y detalle)
 - las fotos de la galería y sus textos alternativos
@@ -63,7 +63,7 @@ Los textos largos de la portada (título, "Entrada libre y gratuita", etc.) est�
 ├─ src/
 │  ├─ data/contenido.js   ← textos editables
 │  ├─ componentes/        ← una pieza por sección (Header, Hero, Escenarios, Cronograma, Contadores,
-│  │                        Galeria, LogoAnimado, CarruselUniversidades, BannerTalento, Disciplinas, Footer)
+│  │                        Galeria, LogoAnimado, CarruselUniversidades, BannerDecorativo, Disciplinas, Footer)
 │  │                        + Grafico y SeparadorConfeti (decoración)
 │  ├─ paginas/            ← Inicio (portada) y PaginaDisciplinas (/disciplinas)
 │  ├─ estilos/            ← un archivo CSS por componente

@@ -1,0 +1,13 @@
+/* ==========================================================
+   BANNER DECORATIVO
+   ========================================================== */
+.banner-decorativo { overflow: hidden; }
+.banner-decorativo__grid { display: grid; gap: 2.5rem; align-items: center; position: relative; z-index: 2; }
+@media (min-width: 860px) { .banner-decorativo__grid { grid-template-columns: 1.1fr .9fr; } }
+.banner-decorativo .titulo { font-size: clamp(1.8rem, 5.4vw, 3.6rem); }
+.banner-decorativo .titulo span { color: var(--amarillo); display: block; }
+.banner-decorativo p { margin-top: 1.2rem; max-width: 46ch; font-size: 1.1rem; }
+.banner-decorativo .btn { margin-top: 1.8rem; }
+.banner-decorativo__foto { position: relative; max-width: 460px; margin-inline: auto; width: 100%; }
+.banner-decorativo__foto .ph { aspect-ratio: 4 / 4.6; clip-path: polygon(14% 0, 100% 6%, 90% 100%, 0 90%); --c: var(--amarillo); }
+.banner-decorativo__foto .cinta { position: absolute; left: -6%; bottom: 8%; z-index: 4; margin: 0; font-size: clamp(.75rem, 2vw, 1rem); background: var(--marino); animation: none; transform: rotate(-4deg); }

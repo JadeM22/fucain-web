@@ -20,18 +20,16 @@
   display: flex; align-items: center; gap: .6rem;
 }
 
-/* Marcas: UNAH | VOAE | FUCAIN (tarjeta blanca) */
+/* Marcas: UNAH | VOAE | FUCAIN (logo directo sobre el header, sin tarjeta) */
 .hdr__marcas { display: flex; align-items: center; gap: 14px; margin-right: auto; }
 .hdr__marcas > img { height: 34px; width: auto; }
 .hdr__sep { width: 1px; height: 28px; background: rgba(11, 22, 49, .18); flex: none; }
 .hdr__fucain {
-  width: 52px; height: 52px; flex: none; display: grid; place-items: center;
-  background: #fff; border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(11, 22, 49, .14);
+  flex: none; display: flex; align-items: center;
   transition: transform .35s cubic-bezier(.23, 1, .32, 1);
 }
 .hdr__fucain:hover { transform: rotate(-4deg) scale(1.06); }
-.hdr__fucain img { height: 42px; width: auto; }
+.hdr__fucain img { height: 52px; width: auto; }
 
 /* Menú */
 .menu { display: none; align-items: center; }
@@ -113,6 +111,5 @@
 @media (max-width: 420px) {
   .hdr__marcas { gap: 10px; }
   .hdr__marcas > img { height: 26px; }
-  .hdr__fucain { width: 46px; height: 46px; border-radius: 12px; }
-  .hdr__fucain img { height: 37px; }
+  .hdr__fucain img { height: 46px; }
 }

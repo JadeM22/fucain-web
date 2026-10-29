@@ -1,6 +1,6 @@
 // ============================================================
 //  CONTENIDO EDITABLE DE FUCAIN 2026
-//  Cambia aquí los textos, cifras, redes, contacto y universidades.
+//  Cambia aquí los textos, cifras, universidades y el pie de página.
 //  Guarda el archivo y la página se actualiza sola (npm run dev).
 // ============================================================
 
@@ -8,21 +8,18 @@
 // Formato: AAAA-MM-DDTHH:MM:SS-06:00
 export const fechaInicio = '2026-11-10T00:00:00-06:00';
 
-// ---------- Contacto (datos de EJEMPLO: reemplazar por los oficiales) ----------
-export const contacto = {
-  correo: 'fucain@unah.edu.hn',
-  telefono: '(+504) 2216-0000',
-  telefonoLink: '+50422160000', // sin espacios ni guiones, para que el celular pueda llamar
-  direccion: 'Ciudad Universitaria, Tegucigalpa',
+// ---------- Pie de página (footer) ----------
+// Solo los 3 logos, en este orden de izquierda a derecha, y la línea de derechos.
+// archivo: dentro de public/img/logos/ · respaldo: versión a color que se muestra si el archivo no existe
+// clase: tamaño de cada logo (se ajusta en src/estilos/footer.css para que se vean parejos)
+export const pie = {
+  logos: [
+    { archivo: 'fucain-azul.png', alt: 'FUCAIN', clase: 'pie__logo--fucain', ancho: 500, alto: 499 },
+    { archivo: 'voae-blanco.png', respaldo: 'voae.png', alt: 'VOAE', clase: 'pie__logo--voae', ancho: 689, alto: 362 },
+    { archivo: 'unah-blanco.png', respaldo: 'unah.png', alt: 'UNAH', clase: 'pie__logo--unah', ancho: 657, alto: 380 },
+  ],
+  derechos: '© 2026 UNAH – VOAE',
 };
-
-// ---------- Redes sociales (enlaces de EJEMPLO) ----------
-// tipo puede ser: 'facebook', 'instagram' o 'youtube'
-export const redes = [
-  { tipo: 'facebook', nombre: 'Facebook de FUCAIN', url: 'https://www.facebook.com/' },
-  { tipo: 'instagram', nombre: 'Instagram de FUCAIN', url: 'https://www.instagram.com/' },
-  { tipo: 'youtube', nombre: 'YouTube de FUCAIN', url: 'https://www.youtube.com/' },
-];
 
 // ---------- Escenarios (en este orden se muestran) ----------
 // num: número que se ve en la estrella · nombre: tal como se escribe en la tarjeta
@@ -201,10 +198,10 @@ export const ubicacion = {
 };
 
 // ---------- Textos de la portada ----------
-export const talento = {
+export const bannerDecorativo = {
   eyebrow: 'Eres parte',
   linea1: 'Tu talento es identidad',
   linea2: 'Tu arte también es Honduras',
   texto: 'Música, teatro, danza, artes visuales, literatura o cine: el escenario es tuyo. Súmate a FUCAIN y muestra lo que sabes hacer.',
-  boton: 'Quiero participar',
+  boton: 'Ver cronogramas', // lleva a la sección del cronograma de la portada
 };

@@ -5,7 +5,7 @@ import Contadores from '../componentes/Contadores';
 import Galeria from '../componentes/Galeria';
 import LogoAnimado from '../componentes/LogoAnimado';
 import CarruselUniversidades from '../componentes/CarruselUniversidades';
-import BannerTalento from '../componentes/BannerTalento';
+import BannerDecorativo from '../componentes/BannerDecorativo';
 import Disciplinas from '../componentes/Disciplinas';
 import SeparadorConfeti from '../componentes/SeparadorConfeti';
 import useRevelar from '../hooks/useRevelar';
@@ -27,7 +27,7 @@ export default function Inicio() {
       <LogoAnimado />
       <CarruselUniversidades />
       <SeparadorConfeti nombre="asteriscos-2" ancho="clamp(200px, 30vw, 440px)" k="0.54" lado="der" x="6%" tiempo="10s" />
-      <BannerTalento />
+      <BannerDecorativo />
       <Disciplinas />
     </main>
   );

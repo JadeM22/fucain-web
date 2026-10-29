@@ -13,7 +13,7 @@ import './estilos/contadores.css';
 import './estilos/galeria.css';
 import './estilos/logo-animado.css';
 import './estilos/carrusel-universidades.css';
-import './estilos/banner-talento.css';
+import './estilos/banner-decorativo.css';
 import './estilos/disciplinas.css';
 import './estilos/footer.css';
 import './estilos/pagina-disciplinas.css';

@@ -12,8 +12,8 @@
   to { transform: translateY(12px) rotate(2.5deg); }
 }
 
-/* Banner de talento: asteriscos pequeños en el margen izquierdo (sin tapar el texto) */
-.g-talento { width: clamp(56px, 5.5vw, 84px); left: 1%; top: 46%; --t: 11s; }
+/* Banner decorativo: asteriscos pequeños en el margen izquierdo (sin tapar el texto) */
+.g-banner-decorativo { width: clamp(56px, 5.5vw, 84px); left: 1%; top: 46%; --t: 11s; }
 
 /* Entre secciones: contenedor sin alto, centrado sobre el borde */
 .separador { position: relative; height: 0; z-index: 4; }
@@ -23,5 +23,5 @@
   z-index: 4;
 }
 
-@media (max-width: 1100px) { .g-talento { display: none; } }
+@media (max-width: 1100px) { .g-banner-decorativo { display: none; } }
 
