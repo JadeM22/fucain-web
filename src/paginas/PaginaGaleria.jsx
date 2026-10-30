@@ -2,8 +2,6 @@ import { useCallback, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Album from '../componentes/galeria/Album';
 import BarraSeleccion from '../componentes/galeria/BarraSeleccion';
-import Cierre from '../componentes/galeria/Cierre';
-import Cintas from '../componentes/galeria/Cintas';
 import ModalProgreso from '../componentes/galeria/ModalProgreso';
 import Muro from '../componentes/galeria/Muro';
 import Portada from '../componentes/galeria/Portada';
@@ -88,7 +86,6 @@ function Galeria() {
           onElegir={(n) => cambiarDia(n, { irAlAlbum: true })}
           onDescargar={descargarVisibles}
         />
-        <Cintas />
         <Muro fotos={fotos} onAbrir={abrirDesdeMuro} />
         <Album
           fotos={visibles}
@@ -106,7 +103,6 @@ function Galeria() {
           onDescargarFoto={una}
           onDescargarVisibles={descargarVisibles}
         />
-        <Cierre />
       </main>
 
       {modoSel && (
@@ -131,7 +127,7 @@ function Galeria() {
   );
 }
 
-// Página /galeria: portada con filtros, cintas, muro 3D, álbum con descargas y cierre
+// Página /galeria: portada con filtros, muro 3D y álbum con descargas
 export default function PaginaGaleria() {
   return (
     <ToastsProvider>

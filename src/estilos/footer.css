@@ -1,5 +1,5 @@
 /* ==========================================================
-   FOOTER (igual en todas las páginas: solo 3 logos y derechos)
+   FOOTER (igual en todas las páginas: logos, descripción, enlaces, contacto, redes y derechos)
    ========================================================== */
 /* El corte superior inclinado viene de la clase "corte-der" (base.css) */
 .pie {
@@ -17,6 +17,25 @@
 .pie__logo--fucain { height: 110px; filter: brightness(0) invert(1); }
 .pie__logo--voae { height: 100px; }
 .pie__logo--unah { height: 88px; }
+
+/* Descripción, enlaces rápidos y contacto + redes, en 3 columnas bajo los logos */
+.pie__grid {
+  display: grid; gap: 2.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  margin-top: clamp(2.4rem, 5vw, 3.4rem); padding-top: clamp(2rem, 4vw, 2.6rem); border-top: 1px solid rgba(255, 255, 255, .2);
+}
+.pie__desc { margin: 0; max-width: 34ch; }
+.pie h4 { font-family: var(--f-titulo); font-weight: 800; text-transform: uppercase; font-size: .85rem; letter-spacing: .1em; color: var(--amarillo); margin: 0 0 1rem; }
+.pie ul { list-style: none; margin: 0; padding: 0; }
+.pie li + li { margin-top: .4rem; }
+.pie a { color: inherit; text-decoration: none; }
+.pie li a:hover { color: var(--amarillo); text-decoration: underline; text-underline-offset: 4px; }
+.redes { display: flex; gap: .8rem; margin-top: 1rem; }
+.redes a { width: 46px; height: 46px; display: grid; place-items: center; background: var(--c); color: var(--tinta); clip-path: polygon(8% 0, 100% 10%, 92% 100%, 0 90%); transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.redes a:nth-child(1) { --c: var(--amarillo); }
+.redes a:nth-child(2) { --c: var(--turquesa); }
+.redes a:nth-child(3) { --c: var(--celeste); }
+.redes a:hover { transform: translateY(-5px) rotate(-8deg) scale(1.1); }
+.redes svg { width: 22px; height: 22px; fill: currentColor; }
 
 .pie__copy {
   margin-top: clamp(2rem, 4vw, 2.8rem); text-align: center;

@@ -1,6 +1,6 @@
 // ============================================================
 //  CONTENIDO EDITABLE DE FUCAIN 2026
-//  Cambia aquí los textos, cifras, universidades y el pie de página.
+//  Cambia aquí los textos, cifras, universidades y el pie de página (contacto y redes incluidos).
 //  Guarda el archivo y la página se actualiza sola (npm run dev).
 // ============================================================
 
@@ -9,7 +9,7 @@
 export const fechaInicio = '2026-11-10T00:00:00-06:00';
 
 // ---------- Pie de página (footer) ----------
-// Solo los 3 logos, en este orden de izquierda a derecha, y la línea de derechos.
+// Los 3 logos (en este orden de izquierda a derecha), descripción, enlaces rápidos, contacto, redes y derechos.
 // archivo: dentro de public/img/logos/ · respaldo: versión a color que se muestra si el archivo no existe
 // clase: tamaño de cada logo (se ajusta en src/estilos/footer.css para que se vean parejos)
 export const pie = {
@@ -17,6 +17,29 @@ export const pie = {
     { archivo: 'fucain-azul.png', alt: 'FUCAIN', clase: 'pie__logo--fucain', ancho: 500, alto: 499 },
     { archivo: 'voae-blanco.png', respaldo: 'voae.png', alt: 'VOAE', clase: 'pie__logo--voae', ancho: 689, alto: 362 },
     { archivo: 'unah-blanco.png', respaldo: 'unah.png', alt: 'UNAH', clase: 'pie__logo--unah', ancho: 657, alto: 380 },
+  ],
+  descripcion: 'Festival Universitario de la Cultura y el Arte para la Identidad Nacional.',
+  // seccion: id de una sección de la portada · ruta: otra página del sitio
+  enlaces: [
+    { texto: 'Escenarios', seccion: 'escenarios' },
+    { texto: 'Cronograma', seccion: 'cronograma' },
+    { texto: 'Cronograma por disciplina', ruta: '/disciplinas' },
+    { texto: 'Galería', seccion: 'galeria' },
+    { texto: 'Galería completa', ruta: '/galeria' },
+    { texto: 'Universidades', seccion: 'universidades' },
+  ],
+  // Contacto (datos de EJEMPLO: reemplazar por los oficiales)
+  contacto: {
+    correo: 'fucain@unah.edu.hn',
+    telefono: '(+504) 2216-0000',
+    telefonoLink: '+50422160000', // sin espacios ni guiones, para que el celular pueda llamar
+    direccion: 'Ciudad Universitaria, Tegucigalpa',
+  },
+  // Redes sociales (enlaces de EJEMPLO) · tipo puede ser: 'facebook', 'instagram' o 'youtube'
+  redes: [
+    { tipo: 'facebook', nombre: 'Facebook de FUCAIN', url: 'https://www.facebook.com/' },
+    { tipo: 'instagram', nombre: 'Instagram de FUCAIN', url: 'https://www.instagram.com/' },
+    { tipo: 'youtube', nombre: 'YouTube de FUCAIN', url: 'https://www.youtube.com/' },
   ],
   derechos: '© 2026 UNAH – VOAE',
 };

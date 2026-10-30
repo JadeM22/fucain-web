@@ -33,7 +33,7 @@ Opcionales (fondo de la página de disciplinas): `disciplina-musica.jpg`, `disci
 ## 3. Dónde cambiar los textos
 Abre **`src/data/contenido.js`**. Ahí están, con comentarios en español:
 - fecha de inicio de la cuenta regresiva
-- los 3 logos del pie de página (footer) y la línea "© 2026 UNAH – VOAE" (`pie`)
+- el pie de página (footer, `pie`): los 3 logos, la descripción, los enlaces rápidos, el contacto (correo, teléfono, dirección — datos de EJEMPLO), las redes sociales y la línea "© 2026 UNAH – VOAE"
 - los 10 escenarios (número, nombre, descripción corta y archivo de foto)
 - el mapa interactivo de la portada, en la sección de disciplinas (`escenariosMapa`: coordenadas, capacidad, manifestaciones y lado de la etiqueta; las fotos son las mismas de `public/img/escenarios/`)
 - los 4 contadores (número, etiqueta y detalle)

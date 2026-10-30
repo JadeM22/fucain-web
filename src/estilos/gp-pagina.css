@@ -1,5 +1,5 @@
 /* ==========================================================
-   PÁGINA /galeria — portada, cintas, muro 3D, álbum y cierre
+   PÁGINA /galeria — portada, muro 3D y álbum
    (prefijo gp- = galería página). Sin esquinas redondeadas: todo con recortes irregulares.
    ========================================================== */
 .gp {
@@ -72,29 +72,20 @@
 }
 @keyframes gp-pop { from { transform: scale(0) rotate(-50deg); opacity: 0; } to { transform: none; opacity: 1; } }
 
-/* ---------- 2.2 Cintas cruzadas ---------- */
-.gp-cintas { position: relative; height: clamp(190px, 22vw, 270px); overflow: hidden; background: var(--blanco); }
-.gp-cinta { position: absolute; left: -10%; width: 120%; overflow: hidden; padding: .85rem 0; font-family: var(--f-titulo); font-weight: 900; text-transform: uppercase; font-size: clamp(.95rem, 2vw, 1.5rem); }
-.gp-cinta--a { top: 22%; background: var(--turquesa); color: var(--tinta); transform: rotate(-3deg); }
-.gp-cinta--b { top: 40%; background: var(--rojo); color: var(--tinta); transform: rotate(2deg); }
-.gp-cinta__pista { display: flex; width: max-content; animation: gp-cinta 38s linear infinite; }
-.gp-cinta--b .gp-cinta__pista { animation-direction: reverse; animation-duration: 46s; }
-.gp-cinta__grupo { display: flex; }
-.gp-cinta__item { display: inline-flex; align-items: center; gap: 1.2rem; padding-right: 1.2rem; white-space: nowrap; }
-.gp-cinta__est { width: 1.1em; height: 1.1em; flex: none; }
-@keyframes gp-cinta { to { transform: translateX(-50%); } }
-
 /* ---------- 2.3 Muro 3D ---------- */
-.gp-muro { background: var(--marino); color: var(--blanco); padding-bottom: clamp(3rem, 7vw, 5rem); position: relative; }
-.gp-muro__cab { text-align: center; margin-bottom: clamp(1.2rem, 3vw, 2rem); }
-.gp-muro__cab .titulo { margin-top: .5rem; }
+/* El muro cubre todo el fondo azul (ancho y alto); el título va encima */
+.gp-muro { background: var(--marino); color: var(--blanco); position: relative; overflow: hidden; min-height: clamp(560px, 72vw, 860px); }
+.gp-muro__cab { position: relative; z-index: 1; text-align: center; pointer-events: none; text-shadow: 0 2px 18px var(--marino), 0 0 6px var(--marino); }
+.gp-muro__cab .titulo { margin: 0; }
 .gp-muro__escena {
-  position: relative; height: clamp(440px, 58vw, 680px); perspective: 1300px; overflow: hidden;
-  mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 15%, #000 85%, transparent);
+  position: absolute; inset: 0; perspective: 1300px; overflow: hidden;
+  /* oscurece solo la franja del título para que se lea */
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, .25) 22%, #000 42%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, .25) 0, rgba(0, 0, 0, .25) 22%, #000 42%);
 }
 .gp-muro__plano {
-  display: flex; justify-content: center; gap: clamp(.6rem, 1.4vw, 1.1rem); height: 100%; width: min(100% - 1rem, 1240px); margin-inline: auto;
+  /* más ancho y alto que la sección: la perspectiva achica los bordes y así no quedan huecos */
+  display: flex; justify-content: center; gap: clamp(.6rem, 1.4vw, 1.1rem); height: 120%; width: 116%; margin: -6% 0 0 -8%;
   transform-style: preserve-3d; transform-origin: 50% 45%;
   transform: rotateX(calc(20deg + var(--tilt-x, 0deg))) rotateY(var(--tilt-y, 0deg));
 }
@@ -165,16 +156,6 @@
 .gp-vacio .gp-vacio__est { position: static; margin: 0 auto 1.2rem; }
 .gp-vacio__dia { font: 800 clamp(1.1rem, 2.4vw, 1.5rem)/1.2 var(--f-titulo); text-transform: uppercase; margin: 0; }
 .gp-vacio__txt { margin: .7rem auto 0; max-width: 36ch; }
-
-/* ---------- 2.5 Cierre morado ---------- */
-.gp-cierre { position: relative; overflow: hidden; background: var(--morado); color: var(--blanco); text-align: center; padding-bottom: clamp(4rem, 9vw, 7rem); }
-.gp-cierre .estrella { z-index: 0; }
-.gp-cierre__in { position: relative; z-index: 1; }
-.gp-cierre__logo { position: relative; width: clamp(150px, 22vw, 230px); margin: 0 auto 1.8rem; animation: flotar 5s ease-in-out infinite alternate; }
-.gp-cierre__forma { position: absolute; inset: -6% -16%; background: var(--blanco); clip-path: polygon(6% 14%, 94% 0, 100% 82%, 12% 100%); }
-.gp-cierre__logo img { position: relative; width: 100%; height: auto; }
-.gp-cierre .titulo { margin-top: .6rem; }
-.gp-cierre__botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.4rem; margin-top: 2rem; }
 
 /* ---------- Móvil ---------- */
 @media (max-width: 759px) {

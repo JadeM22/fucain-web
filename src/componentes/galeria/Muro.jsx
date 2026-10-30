@@ -107,7 +107,6 @@ export default function Muro({ fotos, onAbrir }) {
     <section className="gp-muro corte-izq" aria-labelledby="gp-muro-tit">
       <div className="contenedor">
         <div className="gp-muro__cab">
-          <p className="gp-etiqueta gp-etiqueta--celeste">El muro</p>
           <h2 className="titulo" id="gp-muro-tit">Todo el festival en <span className="c4">movimiento</span></h2>
         </div>
       </div>
