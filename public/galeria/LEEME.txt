@@ -1,0 +1,19 @@
+FOTOS DE LA GALERIA (pagina /galeria)
+
+1. Copia las fotos originales (resolucion completa) en la carpeta de su dia:
+     dia-1/  (martes 10 de noviembre)
+     dia-2/  (miercoles 11)
+     dia-3/  (jueves 12)
+   Se ordenan por nombre de archivo: 0001.jpg, 0002.jpg, 0003.jpg ...
+   (tambien sirven .jpeg .png .webp)
+
+2. (Opcional, recomendado) Miniaturas livianas con el MISMO nombre en  dia-N/miniaturas/
+   (unos 800 px de ancho). Hacen que el album y el muro carguen rapido.
+   Si no las pones, se usa la foto original.
+
+3. Ejecuta en la terminal, dentro de la carpeta del proyecto:   npm run fotos
+   Eso lee las carpetas y escribe fotos.json (cuenta, orden y medidas de cada foto).
+   Despues:  npm run build   y entrega dist/.
+
+Los archivos que se descargan se llaman solos:  fucain-2026_dia-1_0001.jpg
+y los ZIP:  fucain-2026_dia-1.zip  fucain-2026_todo.zip  fucain-2026_seleccion.zip

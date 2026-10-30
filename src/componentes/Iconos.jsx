@@ -51,6 +51,12 @@ export default function Iconos() {
       <symbol id="i-descargar" viewBox="0 0 24 24">
         <path d="M12 4v11M7 11l5 5 5-5M5 20h14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
       </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M7 4.5l13 7.5-13 7.500z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-pausa" viewBox="0 0 24 24">
+        <path d="M6.5 4.500h4v15h-4zM13.500 4.500h4v15h-4z" fill="currentColor" />
+      </symbol>
       <symbol id="i-x" viewBox="0 0 24 24">
         <path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
       </symbol>

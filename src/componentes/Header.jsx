@@ -9,7 +9,7 @@ const MENU = [
   ['escenarios', 'Escenarios'],
   ['cronograma', 'Cronograma'],
   ['galeria', 'Galería'],
-  ['universidades', 'Universidades'],
+  ['universidades', 'Participantes'],
 ];
 
 export default function Header() {

@@ -1,0 +1,61 @@
+/* ==========================================================
+   VISOR DE LA GALERÍA (pantalla completa sobre fondo tinta)
+   ========================================================== */
+.gp-visor {
+  position: fixed; inset: 0; z-index: 400; display: flex; flex-direction: column;
+  background: var(--tinta); color: var(--blanco);
+  animation: gp-visor-in .3s cubic-bezier(.23, 1, .32, 1);
+}
+@keyframes gp-visor-in { from { opacity: 0; } to { opacity: 1; } }
+
+.gp-visor__top { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.1rem; padding: .8rem clamp(.8rem, 2vw, 1.6rem); }
+.gp-visor__cont { margin: 0; font: 800 .9rem/1 var(--f-titulo); letter-spacing: .06em; }
+.gp-visor__dia {
+  padding: .5rem .9rem; background: var(--c); color: var(--on);
+  font: 800 .72rem/1 var(--f-titulo); letter-spacing: .06em; text-transform: uppercase;
+  clip-path: polygon(4% 0, 100% 8%, 96% 100%, 0 92%);
+}
+.gp-visor__fecha { font-size: .9rem; opacity: .85; }
+.gp-visor__acc { margin-left: auto; display: flex; align-items: center; gap: .8rem; }
+.gp-visor__cerrar {
+  width: 46px; height: 46px; display: grid; place-items: center; border: 0; cursor: pointer;
+  background: var(--rojo); color: var(--blanco); clip-path: polygon(8% 0, 100% 8%, 92% 100%, 0 92%);
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.gp-visor__cerrar:hover { transform: rotate(-6deg) scale(1.1); }
+.gp-visor__cerrar svg { width: 22px; height: 22px; }
+
+.gp-visor__escena { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: .8rem; padding: .4rem clamp(.4rem, 1.5vw, 1rem); }
+.gp-visor__marco { flex: none; padding: 10px; background: var(--blanco); clip-path: polygon(.6% 0, 100% .8%, 99.4% 100%, 0 99.2%); }
+.gp-visor__img {
+  position: relative; overflow: hidden; background: var(--marino); aspect-ratio: var(--ratio);
+  width: min(calc(100vw - 2 * 52px - 2.6rem - 20px), calc((100svh - 300px) * var(--ratio)));
+}
+.gp-visor__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.gp-visor__borrosa { filter: blur(14px); transform: scale(1.08); object-fit: cover !important; }   /* miniatura borrosa mientras llega el original */
+.gp-visor__orig { opacity: 0; transition: opacity .35s cubic-bezier(.23, 1, .32, 1); }
+.gp-visor__orig.lista { opacity: 1; }
+.gp-visor__falla { position: absolute; inset: auto 0 12px; margin: 0; text-align: center; font-weight: 600; font-size: .85rem; color: var(--blanco); text-shadow: 0 1px 6px var(--tinta); }
+
+.gp-visor__flecha {
+  flex: none; width: 52px; height: 52px; display: grid; place-items: center; border: 0; cursor: pointer; z-index: 2;
+  background: var(--amarillo); color: var(--tinta); clip-path: polygon(8% 0, 100% 8%, 92% 100%, 0 92%);
+  transition: transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.gp-visor__flecha:hover { transform: scale(1.12) rotate(-4deg); }
+.gp-visor__flecha svg { width: 26px; height: 26px; }
+
+.gp-visor__tira { display: flex; gap: .5rem; overflow-x: auto; padding: .6rem clamp(.8rem, 2vw, 1.6rem) .9rem; scrollbar-width: thin; }
+.gp-visor__mini { position: relative; flex: none; width: 74px; height: 56px; padding: 0; border: 0; cursor: pointer; background: var(--marino); opacity: .62; clip-path: polygon(3% 0, 100% 6%, 97% 100%, 0 94%); transition: opacity .25s, transform .25s; }
+.gp-visor__mini img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gp-visor__mini:hover { opacity: 1; }
+.gp-visor__mini.activa { opacity: 1; transform: translateY(-3px); }
+.gp-visor__mini.activa::after { content: ""; position: absolute; inset: 0; border: 3px solid var(--amarillo); }   /* anillo amarillo de la foto activa */
+
+@media (max-width: 759px) {
+  .gp-visor__flecha { position: absolute; top: 50%; translate: 0 -50%; width: 44px; height: 44px; }
+  .gp-visor__flecha--izq { left: .3rem; }
+  .gp-visor__flecha--der { right: .3rem; }
+  .gp-visor__img { width: min(calc(100vw - 2.2rem - 20px), calc((100svh - 290px) * var(--ratio))); }
+}
+@media (max-width: 559px) { .gp-visor__fecha { display: none; } }

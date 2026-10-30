@@ -7,6 +7,7 @@ import Inicio from './paginas/Inicio';
 import PaginaDisciplinas from './paginas/PaginaDisciplinas';
 import PaginaGaleria from './paginas/PaginaGaleria';
 
+
 const TITULOS = {
   '/disciplinas': 'Cronograma por disciplina · FUCAIN 2026',
   '/galeria': 'Galería completa · FUCAIN 2026',

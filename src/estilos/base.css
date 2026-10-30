@@ -13,6 +13,8 @@
   --verde: #66B32F;
   --celeste: #7ECBE3;
   --naranja: #F5A12F;
+  --verde-oscuro: #3F7D17; /* etiqueta de Participantes */
+  --rojo-oscuro: #C9391A; /* etiquetas sobre fondo claro (contraste 5:1) */
   --crema: #FFF9EA;
   --blanco: #fff;
 
@@ -117,6 +119,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .btn--amarillo { --bg: var(--amarillo); --fg: var(--marino); }
 .btn--blanco { --bg: #fff; --fg: var(--marino); }
 .btn--turquesa { --bg: var(--turquesa); --fg: var(--tinta); }
+.btn--celeste { --bg: var(--celeste); --fg: var(--tinta); }
+.btn--principal { --bg: linear-gradient(135deg, var(--amarillo), var(--naranja)); --fg: var(--tinta); } /* botón principal de la galería */
+.btn--chico { font-size: .72rem; padding: .7rem 1.2rem; }
 .btn--rojo { --bg: var(--rojo); --fg: #fff; }
 .btn--morado { --bg: var(--morado); --fg: #fff; }
 .btn--off {

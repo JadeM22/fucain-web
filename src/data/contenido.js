@@ -78,6 +78,31 @@ export const escenarios = [
   },
 ];
 
+// ---------- Mapa de escenarios (sección #ubicacion de la portada) ----------
+// Manifestaciones: color del mapa, tinte de fondo y color de texto (contraste 4.5:1 sobre el tinte)
+export const tiposMapa = {
+  musica: { nombre: 'Música', color: '#E84E2B', tinte: '#FCE3DC', texto: '#B5361A' },
+  escenicas: { nombre: 'Artes escénicas', color: '#85328A', tinte: '#F1E2F2', texto: '#6B2370' },
+  visuales: { nombre: 'Visuales, literatura y cine', color: '#12AC9C', tinte: '#DDF4F1', texto: '#0B6F64' },
+};
+
+// En este orden se numeran y se une la ruta del recorrido.
+// corto: nombre de la etiqueta del mapa · pos: arriba | abajo | izquierda | derecha (lado de la etiqueta)
+// tipos: manifestaciones (si son dos, el color se parte 50/50) · modo: sentadas | de pie
+// foto: archivo en public/img/escenarios/ (si no existe, se avisa que llegará pronto)
+export const escenariosMapa = [
+  { corto: 'Anfiteatro CISE', nombre: 'Anfiteatro del Edificio CISE', edificio: 'Edificio CISE', capacidad: 2000, modo: 'sentadas', tipos: ['musica', 'escenicas'], lat: 14.08446, lon: -87.16538, pos: 'abajo', foto: '01-cise.jpg', nota: 'Gradas y escenario para presentaciones del festival.' },
+  { corto: 'Auditorio 1 · C3', nombre: 'Auditorio No. 1, Edificio C3', edificio: 'Edificio C3', capacidad: 110, modo: 'sentadas', tipos: ['musica'], lat: 14.08655, lon: -87.16530, pos: 'arriba', foto: '06-auditorio-1-c3.jpg', nota: 'Presentaciones, charlas y conferencias del festival.' },
+  { corto: 'Auditorio 2 · C3', nombre: 'Auditorio No. 2, Edificio C3', edificio: 'Edificio C3', capacidad: 110, modo: 'sentadas', tipos: ['musica', 'escenicas'], lat: 14.08640, lon: -87.16508, pos: 'derecha', foto: '07-auditorio-2-c3.jpg', nota: 'Música, teatro y actividades del componente académico.' },
+  { corto: 'Puente Aéreo', nombre: 'Edificio 1847 "Puente Aéreo"', edificio: 'Edificio 1847', capacidad: 500, modo: 'de pie', tipos: ['escenicas'], lat: 14.08571, lon: -87.16501, pos: 'izquierda', foto: '04-edificio-1847.jpg', nota: 'Muestras y actividades artísticas del festival.' },
+  { corto: 'Plaza Cuatro Culturas', nombre: 'Plaza Cuatro Culturas', edificio: 'Plaza abierta', capacidad: 500, modo: 'de pie', tipos: ['escenicas'], lat: 14.08522, lon: -87.16412, pos: 'abajo', foto: '03-cuatro-culturas.jpg', nota: 'Plaza al aire libre para muestras, danza y ambiente de fiesta.' },
+  { corto: 'Teatro Padre Trino', nombre: 'Teatro Padre Trino', edificio: 'Edificio D1', capacidad: 100, modo: 'sentadas', tipos: ['escenicas'], lat: 14.08556, lon: -87.16430, pos: 'abajo', foto: '02-padre-trino.jpg', nota: 'Obras de teatro y puestas en escena universitarias.' },
+  { corto: 'Aud. José C. del Valle', nombre: 'Auditorio "José Cecilio del Valle"', edificio: 'Edificio C1', capacidad: 200, modo: 'sentadas', tipos: ['visuales'], lat: 14.08678, lon: -87.16331, pos: 'arriba', foto: '05-jose-cecilio.jpg', nota: 'Conciertos, recitales y presentaciones con escenario y butacas.' },
+  { corto: 'Cinemateca', nombre: 'Cinemateca "Enrique Ponce Garay"', edificio: 'Cinemateca', capacidad: 143, modo: 'sentadas', tipos: ['visuales'], lat: 14.08540, lon: -87.16285, pos: 'arriba', foto: '08-cinemateca.jpg', nota: 'Proyección de cortometrajes y muestras audiovisuales.' },
+  { corto: 'Plaza Registro', nombre: 'Anfiteatro de Plaza Registro', edificio: 'Plaza Registro', capacidad: 500, modo: 'de pie', tipos: ['musica', 'escenicas'], lat: 14.08363, lon: -87.16310, pos: 'abajo', foto: '09-plaza-registro.jpg', nota: 'Escenario al aire libre para música y danza.' },
+  { corto: 'Alma Máter', nombre: 'Lobby y Mezanine, edificio Alma Máter', edificio: 'Edificio Alma Máter', capacidad: 100, modo: 'de pie', tipos: ['visuales'], lat: 14.08436, lon: -87.16151, pos: 'abajo', foto: '10-alma-mater.jpg', nota: 'Exposiciones de artes visuales y lecturas literarias.' },
+];
+
 // ---------- Contadores (cifras animadas) ----------
 // valor: número final (se muestra con coma de miles, por ejemplo 1,390)
 // etiqueta: título en mayúsculas · detalle: línea pequeña debajo · mas: true agrega "+" al final
@@ -102,35 +127,28 @@ export const galeria = [
   { foto: 'galeria-09.jpg', alt: 'Músicos tradicionales en vivo' },
 ];
 
-// ---------- Galería completa (página /galeria) ----------
-// Cada bloque es una sección de la página. Las fotos se generan solas con estos nombres,
-// dentro de public/img/galeria/:  <prefijo>-01.jpg, <prefijo>-02.jpg …  hasta "cantidad".
-// Tip: con 5 o con 9 fotos la cuadrícula queda completa (la primera foto es la grande).
-export const galeriaCompleta = [
-  { id: 'generales', titulo: 'Generales', eyebrow: 'Lo mejor del festival', prefijo: 'general', cantidad: 5, color: 'var(--amarillo)' },
-  { id: 'dia-1', titulo: 'Día 1', fecha: '10 de noviembre', eyebrow: 'Primer día', prefijo: 'dia-1', cantidad: 9, color: 'var(--turquesa)' },
-  { id: 'dia-2', titulo: 'Día 2', fecha: '11 de noviembre', eyebrow: 'Segundo día', prefijo: 'dia-2', cantidad: 9, color: 'var(--rojo)' },
-  { id: 'dia-3', titulo: 'Día 3', fecha: '12 de noviembre', eyebrow: 'Tercer día', prefijo: 'dia-3', cantidad: 9, color: 'var(--morado)', on: '#fff' },
+// ---------- Participantes (sección #universidades) ----------
+// En este orden se muestran. sigla: se ve si no hay logo · logo: archivo dentro de public/img/
+// (si el archivo no existe todavía, por ejemplo unitec.png, se muestra la sigla sola; al agregarlo aparece el logo)
+export const participantes = [
+  { sigla: 'UNAH', nombre: 'Universidad Nacional Autónoma de Honduras', logo: 'logos/unah.png' },
+  { sigla: 'UNPH', nombre: 'Universidad Nacional de la Policía de Honduras', logo: 'universidades/unph.png' },
+  { sigla: 'UPNFM', nombre: 'Universidad Pedagógica Nacional Francisco Morazán', logo: 'universidades/upnfm.png' },
+  { sigla: 'UNICAH', nombre: 'Universidad Católica de Honduras', logo: 'universidades/unicah.png' },
+  { sigla: 'UJCV', nombre: 'Universidad José Cecilio del Valle', logo: 'universidades/ujcv.png' },
+  { sigla: 'UDH', nombre: 'Universidad de Defensa de Honduras', logo: 'universidades/udh.png' },
+  { sigla: 'UTH', nombre: 'Universidad Tecnológica de Honduras', logo: 'universidades/uth.png' },
+  { sigla: 'UCRISH', nombre: 'Universidad Cristiana de Honduras', logo: 'universidades/ucrish.png' },
+  { sigla: 'UNITEC', nombre: 'Universidad Tecnológica Centroamericana', logo: 'universidades/unitec.png' },
 ];
 
-// Descarga de todas las fotos: pon el .zip en public/descargas/ con este nombre.
-// Mientras no exista, el botón dice "Próximamente".
-export const descargaFotos = { archivo: 'fotos-fucain-2026.zip', texto: 'Descargar todas las fotos' };
-
-// ---------- Universidades del carrusel ----------
-// archivo: ruta dentro de public/img/ · alt: nombre de la universidad
-export const universidades = [
-  { archivo: 'logos/unah.png', alt: 'UNAH' },
-  { archivo: 'universidades/umh.png', alt: 'Universidad Metropolitana de Honduras' },
-  { archivo: 'universidades/udh.png', alt: 'Universidad de Defensa de Honduras' },
-  { archivo: 'universidades/upnfm.png', alt: 'UPNFM' },
-  { archivo: 'universidades/uth.png', alt: 'Universidad Tecnológica de Honduras' },
-  { archivo: 'universidades/ujcv.png', alt: 'UJCV' },
-  { archivo: 'universidades/unicah.png', alt: 'Universidad Católica de Honduras' },
-  { archivo: 'universidades/unag.png', alt: 'UNAG' },
-  { archivo: 'universidades/ucrish.png', alt: 'UCRISH' },
-  { archivo: 'universidades/unph.png', alt: 'UNPH' },
-];
+// Textos de la sección Participantes
+export const textoParticipantes = {
+  etiqueta: 'Participantes',
+  titulo: 'Nueve instituciones, ',
+  resaltado: 'una sola fiesta',
+  parrafo: 'La UNAH, con delegaciones de sus nueve campus, y ocho universidades del país forman el Sistema de Educación Superior presente en FUCAIN 2026.',
+};
 
 // ---------- Las 3 tarjetas de cronograma ----------
 // pdf: nombre del archivo en public/docs/cronogramas/ · ruta: página interna (sin PDF)
@@ -190,12 +208,6 @@ export const disciplinas = [
   },
 ];
 
-// ---------- Ubicación ----------
-export const ubicacion = {
-  titulo: 'Ciudad Universitaria, UNAH',
-  texto: 'Tegucigalpa, M.D.C., Honduras. Del 10 al 12 de noviembre de 2026. ¡Te esperamos con entrada libre y gratuita!',
-  mapa: 'https://maps.google.com/maps?q=Ciudad%20Universitaria%20UNAH%20Tegucigalpa&t=&z=15&ie=UTF8&iwloc=&output=embed',
-};
 
 // ---------- Textos de la portada ----------
 export const bannerDecorativo = {

@@ -1,74 +1,141 @@
-import { useMemo } from 'react';
-import BotonDescarga from '../componentes/BotonDescarga';
-import EnlaceSeccion from '../componentes/EnlaceSeccion';
-import Estrella from '../componentes/Estrella';
-import Icono from '../componentes/Icono';
-import Mosaico from '../componentes/Mosaico';
-import VisorFotos from '../componentes/VisorFotos';
-import { descargaFotos } from '../data/contenido';
-import useRevelar from '../hooks/useRevelar';
-import useVisor from '../hooks/useVisor';
-import { armarGaleriaCompleta } from '../utils/galeria';
+import { useCallback, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import Album from '../componentes/galeria/Album';
+import BarraSeleccion from '../componentes/galeria/BarraSeleccion';
+import Cierre from '../componentes/galeria/Cierre';
+import Cintas from '../componentes/galeria/Cintas';
+import ModalProgreso from '../componentes/galeria/ModalProgreso';
+import Muro from '../componentes/galeria/Muro';
+import Portada from '../componentes/galeria/Portada';
+import Visor from '../componentes/galeria/Visor';
+import { ToastsProvider, useToasts } from '../componentes/galeria/Toasts';
+import { DIAS } from '../componentes/galeria/datos';
+import useDescargas from '../hooks/useDescargas';
+import useFotosGaleria from '../hooks/useFotosGaleria';
+import { reducirMovimiento } from '../utils/ruta';
 
-// Página /galeria: fotos generales y luego por día. Un solo visor recorre todas las fotos en orden.
-export default function PaginaGaleria() {
-  useRevelar();
-  const bloques = useMemo(() => armarGaleriaCompleta(), []);
-  const todas = useMemo(() => bloques.flatMap((b) => b.fotos), [bloques]);
-  const { actual, abrir, cerrar, mover } = useVisor(todas.length);
+// Línea arcoíris de 3px bajo el header: 7 franjas iguales con la paleta
+const ARCOIRIS = ['rojo', 'naranja', 'amarillo', 'verde', 'turquesa', 'celeste', 'morado'];
 
-  const irA = (id) => document.getElementById(id)?.scrollIntoView({ block: 'start' });
+function Galeria() {
+  const { listo, fotos } = useFotosGaleria();
+  const { avisar } = useToasts();
+  const { progreso, una, varias, cancelar } = useDescargas();
+  const [params, setParams] = useSearchParams();
+
+  // Filtro: 0 = todas, 1..3 = día. Se lee de ?dia=N
+  const [dia, setDia] = useState(() => Math.min(3, Math.max(0, Number(params.get('dia')) || 0)));
+  const [saliendo, setSaliendo] = useState(false);
+  const [modoSel, setModoSel] = useState(false);
+  const [seleccion, setSeleccion] = useState(() => new Set());
+  const [visor, setVisor] = useState(null); // { lista, inicio, origen }
+
+  const conteos = useMemo(() => {
+    const c = { 1: 0, 2: 0, 3: 0 };
+    fotos.forEach((f) => { c[f.dia] += 1; });
+    return c;
+  }, [fotos]);
+
+  const visibles = useMemo(() => (dia ? fotos.filter((f) => f.dia === dia) : fotos), [fotos, dia]);
+
+  // Cambio de filtro: las tarjetas salen (fade + translate), se actualiza ?dia=N con replaceState y entran en cascada
+  const cambiarDia = useCallback((n, { irAlAlbum = false } = {}) => {
+    if (irAlAlbum) {
+      const album = document.getElementById('album');
+      if (album) album.scrollIntoView({ behavior: reducirMovimiento() ? 'auto' : 'smooth', block: 'start' });
+    }
+    if (n === dia) return;
+    const aplicar = () => {
+      setDia(n);
+      setParams(n ? { dia: String(n) } : {}, { replace: true });
+      setSaliendo(false);
+    };
+    if (reducirMovimiento()) { aplicar(); return; }
+    setSaliendo(true);
+    setTimeout(aplicar, 260);
+  }, [dia, setParams]);
+
+  const nombreZip = dia ? `fucain-2026_dia-${dia}.zip` : 'fucain-2026_todo.zip';
+  const tituloZip = dia ? `Descargando ${DIAS[dia - 1].nombre}` : 'Descargando todas las fotos';
+  const descargarVisibles = () => varias(visibles, nombreZip, tituloZip);
+
+  const alternarSeleccion = (foto) => setSeleccion((s) => {
+    const nueva = new Set(s);
+    if (nueva.has(foto.id)) nueva.delete(foto.id); else nueva.add(foto.id);
+    return nueva;
+  });
+  const salirSeleccion = () => { setModoSel(false); setSeleccion(new Set()); };
+  const descargarSeleccion = () => {
+    const elegidas = fotos.filter((f) => seleccion.has(f.id));
+    if (!elegidas.length) { avisar('info', 'Primero elige algunas fotos.'); return; }
+    varias(elegidas, 'fucain-2026_seleccion.zip', 'Descargando tu selección');
+  };
+
+  const abrirDesdeAlbum = (foto, rect) => setVisor({ lista: visibles, inicio: visibles.indexOf(foto), origen: rect });
+  const abrirDesdeMuro = (foto, rect) => setVisor({ lista: fotos, inicio: fotos.indexOf(foto), origen: rect });
 
   return (
-    <main id="contenido">
-      <section className="pag-cabecera" aria-labelledby="t-gal-pag">
-        <Estrella estilo={{ '--s': '120px', '--c': 'var(--turquesa)', left: '-30px', top: '30%', '--t': '26s' }} />
-        <Estrella estilo={{ '--s': '70px', '--c': 'var(--rojo)', right: '8%', top: '22%', '--t': '16s' }} />
-        <Estrella estilo={{ '--s': '100px', '--c': 'var(--amarillo)', right: '-24px', bottom: '10%', '--t': '22s' }} />
-        <div className="contenedor">
-          <div className="volver-wrap">
-            <EnlaceSeccion id="galeria" className="volver">
-              <Icono id="i-flecha" style={{ transform: 'scaleX(-1)' }} /> Volver al inicio
-            </EnlaceSeccion>
-          </div>
-          <p className="eyebrow">Momentos</p>
-          <h1 className="titulo" id="t-gal-pag">Galería <span className="c3">completa</span></h1>
-          <p className="lead">Primero lo mejor del festival y después las fotos de cada día. Toca una foto para verla en grande y descargarla.</p>
-
-          <div className="gal-acciones">
-            <BotonDescarga archivo={descargaFotos.archivo} color="amarillo" inc="-1.4deg">{descargaFotos.texto}</BotonDescarga>
-          </div>
-
-          <nav className="gal-nav" aria-label="Secciones de la galería">
-            {bloques.map((b) => (
-              <button type="button" className="gal-chip" style={{ '--c': b.color, '--on': b.on }} onClick={() => irA(b.id)} key={b.id}>
-                {b.fecha ? `${b.titulo} · ${b.fecha}` : b.titulo}
-              </button>
-            ))}
-          </nav>
+    <>
+      <main id="contenido" className="gp">
+        <div className="gp-arcoiris" aria-hidden="true">
+          {ARCOIRIS.map((c) => <span key={c} style={{ background: `var(--${c})` }} />)}
         </div>
-      </section>
 
-      <div className="gal-pag corte-izq">
-        {bloques.map((b) => (
-          <section className="gal-bloque" id={b.id} aria-labelledby={`t-${b.id}`} key={b.id}>
-            <div className="contenedor">
-              <div className="gal-bloque__cab rev">
-                <span className="gal-bloque__marca" style={{ '--c': b.color }} aria-hidden="true" />
-                <div>
-                  <p className="eyebrow">{b.eyebrow}</p>
-                  <h2 className="titulo" id={`t-${b.id}`}>
-                    {b.titulo}{b.fecha && <span className="gal-bloque__fecha"> · {b.fecha}</span>}
-                  </h2>
-                </div>
-              </div>
-              <Mosaico fotos={b.fotos} onAbrir={(i) => abrir(b.inicio + i)} />
-            </div>
-          </section>
-        ))}
-      </div>
+        <Portada
+          dia={dia}
+          conteos={conteos}
+          total={fotos.length}
+          onElegir={(n) => cambiarDia(n, { irAlAlbum: true })}
+          onDescargar={descargarVisibles}
+        />
+        <Cintas />
+        <Muro fotos={fotos} onAbrir={abrirDesdeMuro} />
+        <Album
+          fotos={visibles}
+          dia={dia}
+          conteos={conteos}
+          total={fotos.length}
+          listo={listo}
+          saliendo={saliendo}
+          onDia={cambiarDia}
+          modoSel={modoSel}
+          onModoSel={() => (modoSel ? salirSeleccion() : setModoSel(true))}
+          seleccion={seleccion}
+          onToggle={alternarSeleccion}
+          onAbrir={abrirDesdeAlbum}
+          onDescargarFoto={una}
+          onDescargarVisibles={descargarVisibles}
+        />
+        <Cierre />
+      </main>
 
-      <VisorFotos fotos={todas} actual={actual} onCerrar={cerrar} onMover={mover} />
-    </main>
+      {modoSel && (
+        <BarraSeleccion
+          cantidad={seleccion.size}
+          onElegirVisibles={() => setSeleccion(new Set(visibles.map((f) => f.id)))}
+          onDescargar={descargarSeleccion}
+          onSalir={salirSeleccion}
+        />
+      )}
+      {visor && (
+        <Visor
+          fotos={visor.lista}
+          inicio={Math.max(0, visor.inicio)}
+          origen={visor.origen}
+          onCerrar={() => setVisor(null)}
+          onDescargar={una}
+        />
+      )}
+      <ModalProgreso progreso={progreso} onCancelar={cancelar} />
+    </>
+  );
+}
+
+// Página /galeria: portada con filtros, cintas, muro 3D, álbum con descargas y cierre
+export default function PaginaGaleria() {
+  return (
+    <ToastsProvider>
+      <Galeria />
+    </ToastsProvider>
   );
 }

@@ -4,7 +4,7 @@ import Cronograma from '../componentes/Cronograma';
 import Contadores from '../componentes/Contadores';
 import Galeria from '../componentes/Galeria';
 import LogoAnimado from '../componentes/LogoAnimado';
-import CarruselUniversidades from '../componentes/CarruselUniversidades';
+import Participantes from '../componentes/Participantes';
 import BannerDecorativo from '../componentes/BannerDecorativo';
 import Disciplinas from '../componentes/Disciplinas';
 import SeparadorConfeti from '../componentes/SeparadorConfeti';
@@ -25,7 +25,7 @@ export default function Inicio() {
       <Galeria />
       <SeparadorConfeti nombre="asteriscos-3" ancho="clamp(70px, 8vw, 120px)" k="1.58" lado="der" x="7%" tiempo="12s" />
       <LogoAnimado />
-      <CarruselUniversidades />
+      <Participantes />
       <SeparadorConfeti nombre="asteriscos-2" ancho="clamp(200px, 30vw, 440px)" k="0.54" lado="der" x="6%" tiempo="10s" />
       <BannerDecorativo />
       <Disciplinas />

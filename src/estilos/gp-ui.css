@@ -1,0 +1,51 @@
+/* ==========================================================
+   GALERÍA: avisos (toasts), modal de progreso y barra de selección
+   ========================================================== */
+
+/* Avisos arriba a la derecha */
+.gp-toasts { position: fixed; top: calc(var(--hdr-h) + 14px); right: 14px; z-index: 500; display: flex; flex-direction: column; gap: .6rem; width: min(92vw, 360px); pointer-events: none; }
+.gp-toast {
+  pointer-events: auto; display: flex; align-items: center; gap: .8rem; padding: .85rem 1.1rem;
+  font: 600 .9rem/1.35 var(--f-texto); color: var(--tinta);
+  clip-path: polygon(2% 0, 100% 6%, 98% 100%, 0 94%);
+  animation: gp-toast-in .45s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.gp-toast--ok { background: var(--verde); }
+.gp-toast--error { background: var(--rojo); }
+.gp-toast--info { background: var(--celeste); }
+.gp-toast__txt { flex: 1; }
+.gp-toast__x { flex: none; border: 0; background: transparent; color: inherit; font-weight: 900; cursor: pointer; padding: .2rem .35rem; }
+@keyframes gp-toast-in { from { opacity: 0; translate: 40px 0; } to { opacity: 1; translate: 0 0; } }
+
+/* Modal de progreso del ZIP */
+.gp-modal { position: fixed; inset: 0; z-index: 450; display: grid; place-items: center; padding: 1rem; background: rgba(11, 22, 49, .72); }
+.gp-modal__caja { width: min(100%, 440px); padding: 1.8rem 1.7rem 1.6rem; text-align: center; background: var(--crema); color: var(--tinta); clip-path: polygon(2% 0, 100% 3%, 98% 100%, 0 97%); }
+.gp-modal__tit { margin: 0 0 1.2rem; font: 800 1.05rem/1.25 var(--f-titulo); text-transform: uppercase; }
+.gp-modal__barra { height: 16px; background: rgba(11, 22, 49, .14); clip-path: polygon(0 10%, 100% 0, 99% 100%, 1% 90%); }
+.gp-modal__barra span { display: block; height: 100%; background: linear-gradient(90deg, var(--amarillo), var(--naranja)); transition: width .25s cubic-bezier(.23, 1, .32, 1); }
+.gp-modal__txt { margin: .9rem 0 1.3rem; font-weight: 600; font-size: .92rem; }
+
+/* Barra flotante del modo selección */
+.gp-sel {
+  position: fixed; left: 50%; bottom: 18px; z-index: 300; translate: -50% 0; width: min(94vw, 720px);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem 1.2rem; padding: .85rem 1.4rem;
+  background: var(--tinta); color: var(--blanco); clip-path: polygon(2% 0, 100% 6%, 98% 100%, 0 94%);
+  animation: gp-sel-in .45s cubic-bezier(.23, 1, .32, 1) both;
+}
+@keyframes gp-sel-in { from { opacity: 0; translate: -50% 30px; } to { opacity: 1; translate: -50% 0; } }
+.gp-sel__n { margin: 0; font: 800 .85rem/1 var(--f-titulo); letter-spacing: .04em; text-transform: uppercase; }
+.gp-sel__acc { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem; }
+.gp-sel__x { width: 40px; height: 40px; border: 0; cursor: pointer; background: var(--rojo); color: var(--blanco); font-weight: 900; clip-path: polygon(8% 0, 100% 8%, 92% 100%, 0 92%); transition: transform .3s cubic-bezier(.34, 1.56, .64, 1); }
+.gp-sel__x:hover { transform: rotate(-6deg) scale(1.1); }
+
+/* Foco visible en los controles de la galería */
+.gp-barra .btn:focus-visible, .gp-filtro:focus-visible, .gp-card__foto:focus-visible, .gp-card__dl:focus-visible,
+.gp-pola:focus-visible, .gp-visor button:focus-visible, .gp-sel button:focus-visible, .gp-modal button:focus-visible {
+  outline: 3px solid var(--morado); outline-offset: 3px;
+}
+.gp-visor button:focus-visible { outline-color: var(--celeste); }
+
+@media (max-width: 759px) {
+  .gp-toasts { right: 8px; }
+  .gp-sel { bottom: 10px; padding: .75rem 1rem; }
+}

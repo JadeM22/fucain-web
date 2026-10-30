@@ -1,5 +1,6 @@
 import Icono from './Icono';
-import { disciplinas, ubicacion } from '../data/contenido';
+import MapaDiferido from './MapaDiferido';
+import { disciplinas } from '../data/contenido';
 
 export default function Disciplinas() {
   return (
@@ -19,21 +20,8 @@ export default function Disciplinas() {
           ))}
         </div>
 
-        <div className="mapa" id="ubicacion">
-          <div className="rev">
-            <p className="eyebrow">Dónde</p>
-            <h3>{ubicacion.titulo}</h3>
-            <p>{ubicacion.texto}</p>
-          </div>
-          <div className="mapa__marco rev" style={{ '--d': 1 }}>
-            <iframe
-              title="Mapa de Ciudad Universitaria UNAH, Tegucigalpa"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src={ubicacion.mapa}
-            />
-          </div>
-        </div>
+        {/* Mapa interactivo de los escenarios (reemplaza al mapa de Google) */}
+        <MapaDiferido />
       </div>
     </section>
   );

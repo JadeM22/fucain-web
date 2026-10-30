@@ -1,7 +1,7 @@
 /* ==========================================================
    DISCIPLINAS + MAPA
    ========================================================== */
-.disciplinas { overflow: hidden; }
+.disciplinas { overflow: clip; }
 .disc-grid { display: grid; gap: clamp(1.2rem, 2.6vw, 1.8rem); grid-template-columns: 1fr; }
 @media (min-width: 620px) { .disc-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 980px) { .disc-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -31,9 +31,4 @@
 .d-literatura { --c: var(--verde); --on: var(--marino); }
 .d-cine { --c: var(--marino); --on: #fff; }
 
-.mapa { margin-top: clamp(2.5rem, 6vw, 4.5rem); display: grid; gap: 1.5rem; align-items: center; }
-@media (min-width: 900px) { .mapa { grid-template-columns: .8fr 1.5fr; } }
-.mapa h3 { font-family: var(--f-titulo); font-weight: 900; text-transform: uppercase; font-size: clamp(1.4rem, 3.4vw, 2.1rem); line-height: 1.12; }
-.mapa p { margin-top: .8rem; }
-.mapa__marco { position: relative; padding: 10px; background: var(--amarillo); clip-path: polygon(0 3%, 100% 0, 98% 100%, 2% 97%); }
-.mapa__marco iframe { width: 100%; height: clamp(280px, 42vw, 420px); border: 0; display: block; background: #e8e8e8; }
+.mapa-diferido { margin-top: clamp(3rem, 6vw, 5rem); min-height: 320px; }

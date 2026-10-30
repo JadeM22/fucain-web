@@ -6,7 +6,7 @@
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .rev { opacity: 1; transform: none; }
   .logo-armado .pz { opacity: 1 !important; }
-  .marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
-  .marquee__track [aria-hidden="true"] { display: none; }
+  .js .part .rev, .js .part .rev.in { translate: none; opacity: 1; }
+  .js .part .part__li, .js .part .part__li:hover, .part__li:hover { transform: none; }
   .panel-movil a { transform: none; }
 }
