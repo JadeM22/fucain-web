@@ -9,6 +9,3 @@ export function fondoEscenario(e) {
 export const primerColor = (e) => tiposMapa[e.tipos[0]].color;
 
 export const formatoCapacidad = (n) => n.toLocaleString('en-US');
-
-// Enlace a las rutas de OpenStreetMap (a pie) hacia el escenario
-export const urlComoLlegar = (e) => `https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=%3B${e.lat}%2C${e.lon}`;

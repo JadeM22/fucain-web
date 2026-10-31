@@ -105,12 +105,12 @@ export const escenariosMapa = [
 // ---------- Contadores (cifras animadas) ----------
 // valor: número final (se muestra con coma de miles, por ejemplo 1,390)
 // etiqueta: título en mayúsculas · detalle: línea pequeña debajo · mas: true agrega "+" al final
-// icono: i-uni, i-visuales, i-artista, i-escena, i-danza, i-musica, i-teatro, i-literatura, i-cine
+// icono: i-persona, i-uni, i-corazon, i-grupo (también disponibles: i-visuales, i-artista, i-escena, i-danza, i-musica, i-teatro, i-literatura, i-cine)
 export const cifras = [
-  { valor: 920, etiqueta: 'Inscritos', detalle: '858 artistas y delegados + 62 autoridades', icono: 'i-artista' },
+  { valor: 920, etiqueta: 'Inscritos', detalle: '858 artistas y delegados + 62 autoridades', icono: 'i-persona' },
   { valor: 9, etiqueta: 'Instituciones', detalle: 'UNAH (9 campus) + 8 universidades', icono: 'i-uni' },
-  { valor: 330, etiqueta: 'Voluntarios', detalle: '165 matutina + 165 vespertina', icono: 'i-danza' },
-  { valor: 1390, etiqueta: 'Personas', detalle: 'población total proyectada', icono: 'i-escena' },
+  { valor: 330, etiqueta: 'Voluntarios', detalle: '165 matutina + 165 vespertina', icono: 'i-corazon' },
+  { valor: 1390, etiqueta: 'Personas', detalle: 'población total proyectada', icono: 'i-grupo' },
 ];
 
 // ---------- Galería (9 fotos en public/img/fotos/) ----------

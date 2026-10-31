@@ -4,7 +4,7 @@ import EnlaceSeccion from '../EnlaceSeccion';
 import Icono from '../Icono';
 import { tiposMapa } from '../../data/contenido';
 import { ruta } from '../../utils/ruta';
-import { fondoEscenario, formatoCapacidad, urlComoLlegar } from './utilidades';
+import { fondoEscenario, formatoCapacidad } from './utilidades';
 
 // Ficha del escenario activo: foto(s), capacidad, nota, manifestaciones y enlaces.
 // escenario.fotos (arreglo) muestra dos fotos lado a lado, p. ej. un escenario con dos áreas; si no, se usa escenario.foto (una sola).
@@ -67,7 +67,6 @@ export default function TarjetaEscenario({ escenario, indice, total, visible, ba
 
         <div className="me-tarjeta__botones">
           <BotonFucain as={EnlaceSeccion} id="programacion" className="btn--chico">Ver programación</BotonFucain>
-          <BotonFucain href={urlComoLlegar(escenario)} target="_blank" rel="noopener noreferrer" color="amarillo" icono="i-ext" className="btn--chico">Cómo llegar</BotonFucain>
         </div>
       </div>
 

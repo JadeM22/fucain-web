@@ -69,6 +69,18 @@ export default function Iconos() {
       <symbol id="i-escena" viewBox="0 0 24 24">
         <path d="M3 20h18M5 20V8l7-5 7 5v12M9 20v-6h6v6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </symbol>
+      <symbol id="i-persona" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M4.5 20c0-4.4 3.4-7 7.5-7s7.5 2.6 7.5 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </symbol>
+      <symbol id="i-corazon" viewBox="0 0 24 24">
+        <path d="M12 19.5s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 9 5c1.3 0 2.5.6 3 1.7.5-1.1 1.7-1.7 3-1.7a4.5 4.5 0 0 1 4.5 4.5c0 5.4-7.5 10-7.5 10z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      </symbol>
+      <symbol id="i-grupo" viewBox="0 0 24 24">
+        <circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17" cy="9" r="2.4" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M3 20c0-3.8 2.7-6.2 6-6.2s6 2.4 6 6.2M15.5 20c0-2.8 1.8-4.6 4-4.6s4 1.8 4 4.6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </symbol>
     </svg>
   );
 }
