@@ -149,6 +149,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   mix-blend-mode: multiply;
   transition: filter .35s, transform .5s;
 }
+/* Dos fotos (p. ej. un escenario con dos áreas): lado a lado dentro del mismo recorte */
+.ph--doble { display: flex; }
+.ph--doble > img { position: static; inset: auto; width: 50%; flex: 1 1 50%; }
+.ph--doble > img + img { border-left: 2px solid rgba(255, 255, 255, .5); }
 .ph__label { display: none; }
 .ph.vacio .ph__label {
   display: grid; place-items: center; position: absolute; inset: 0; z-index: 3;

@@ -6,22 +6,37 @@ import { tiposMapa } from '../../data/contenido';
 import { ruta } from '../../utils/ruta';
 import { fondoEscenario, formatoCapacidad, urlComoLlegar } from './utilidades';
 
-// Ficha del escenario activo: foto, capacidad, nota, manifestaciones y enlaces.
+// Ficha del escenario activo: foto(s), capacidad, nota, manifestaciones y enlaces.
+// escenario.fotos (arreglo) muestra dos fotos lado a lado, p. ej. un escenario con dos áreas; si no, se usa escenario.foto (una sola).
 // Barra de progreso inferior: se llena durante la parada del recorrido automático.
 export default function TarjetaEscenario({ escenario, indice, total, visible, barra, pausado, onCerrar, onAmpliar }) {
-  const [fotoOk, setFotoOk] = useState(true);
-  useEffect(() => { setFotoOk(true); }, [escenario.foto]);
+  const fotos = escenario.fotos || [escenario.foto];
+  const [fotosOk, setFotosOk] = useState(() => fotos.map(() => true));
+  useEffect(() => { setFotosOk(fotos.map(() => true)); }, [escenario]);
   const fondo = fondoEscenario(escenario);
-  const url = ruta(`img/escenarios/${escenario.foto}`);
+  const todasVacias = fotosOk.every((ok) => !ok);
 
   return (
     <aside className={`me-tarjeta${visible ? ' visible' : ''}`} aria-live="polite" style={{ '--fondo': fondo }}>
       <div className="me-tarjeta__banda" aria-hidden="true" />
 
-      {fotoOk ? (
-        <button type="button" className="me-tarjeta__foto" aria-label={`Ampliar la foto de ${escenario.nombre}`} onClick={onAmpliar}>
-          <img src={url} alt={`Foto de ${escenario.nombre}`} onError={() => setFotoOk(false)} />
-        </button>
+      {!todasVacias ? (
+        <div className={`me-tarjeta__foto${fotos.length > 1 ? ' me-tarjeta__foto--doble' : ''}`}>
+          {fotos.map((f, i) => fotosOk[i] && (
+            <button
+              key={f}
+              type="button"
+              aria-label={`Ampliar la foto de ${escenario.nombre}`}
+              onClick={() => onAmpliar(i)}
+            >
+              <img
+                src={ruta(`img/escenarios/${f}`)}
+                alt={`Foto de ${escenario.nombre}`}
+                onError={() => setFotosOk((v) => v.map((ok, j) => (j === i ? false : ok)))}
+              />
+            </button>
+          ))}
+        </div>
       ) : (
         <div className="me-tarjeta__foto me-tarjeta__foto--vacia">
           <span>Foto del escenario próximamente</span>
@@ -51,7 +66,7 @@ export default function TarjetaEscenario({ escenario, indice, total, visible, ba
         </ul>
 
         <div className="me-tarjeta__botones">
-          <BotonFucain as={EnlaceSeccion} id="cronograma" className="btn--chico">Ver cronograma</BotonFucain>
+          <BotonFucain as={EnlaceSeccion} id="programacion" className="btn--chico">Ver programación</BotonFucain>
           <BotonFucain href={urlComoLlegar(escenario)} target="_blank" rel="noopener noreferrer" color="amarillo" icono="i-ext" className="btn--chico">Cómo llegar</BotonFucain>
         </div>
       </div>

@@ -9,7 +9,7 @@ import PaginaGaleria from './paginas/PaginaGaleria';
 
 
 const TITULOS = {
-  '/disciplinas': 'Cronograma por disciplina · FUCAIN 2026',
+  '/disciplinas': 'Programación por disciplina · FUCAIN 2026',
   '/galeria': 'Galería completa · FUCAIN 2026',
 };
 const TITULO_INICIO = 'FUCAIN 2026 · Festival Universitario de la Cultura y el Arte para la Identidad Nacional';

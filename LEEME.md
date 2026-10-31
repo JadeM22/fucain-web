@@ -12,8 +12,8 @@
 ## 2. Dónde poner los PDF y las fotos
 Todo está dentro de la carpeta `public/`. **No hay que tocar código**: solo copia el archivo con el nombre exacto.
 
-**PDF** → `public/docs/cronogramas/`
-`cronograma-general.pdf`, `componente-academico.pdf`, `musica.pdf`, `teatro.pdf`, `danza.pdf`,
+**PDF** → `public/docs/programacion/`
+`programacion-general.pdf`, `componente-academico.pdf`, `musica.pdf`, `teatro.pdf`, `danza.pdf`,
 `artes-visuales.pdf`, `literatura.pdf`, `cinematografia.pdf`
 (Mientras un PDF no exista, su botón dice "Próximamente".)
 
@@ -25,7 +25,7 @@ Opcionales (fondo de la página de disciplinas): `disciplina-musica.jpg`, `disci
 
 **Galería completa** (página `/galeria`) → `public/galeria/dia-1/`, `dia-2/` y `dia-3/`: fotos originales `0001.jpg`, `0002.jpg`… (miniaturas opcionales en `dia-N/miniaturas/`). Después ejecuta `npm run fotos` y `npm run build`. Instrucciones en el `LEEME.txt` de esa carpeta.
 
-**Fotos de escenarios** → `public/img/escenarios/` (`01-cise.jpg` … `10-alma-mater.jpg`; la lista exacta está en el `LEEME.txt` de esa carpeta)
+**Fotos de escenarios** → `public/img/escenarios/` (`01-cise.jpg` … `09-plaza-registro.jpg`, más `10-alma-mater-lobby.jpg` y `10-alma-mater-mezanine.jpg` para el escenario 10, que tiene dos áreas; la lista exacta está en el `LEEME.txt` de esa carpeta)
 
 **Logos** → `public/img/logos/` (el footer usa `voae-blanco.png` y `unah-blanco.png`; si faltan, muestra las versiones a color) · **Logos de participantes (UNITEC: agrega `unitec.png` en `public/img/universidades/`)** → `public/img/universidades/`
 **Gráficos decorativos** (asteriscos y confeti) → `public/img/graficos/` (`asteriscos-1/2/3.png` se usan entre secciones y en el banner decorativo; `asterisco-rojo.png` y `asterisco-grupo.png` son los asteriscos que giran en la portada)
@@ -33,13 +33,13 @@ Opcionales (fondo de la página de disciplinas): `disciplina-musica.jpg`, `disci
 ## 3. Dónde cambiar los textos
 Abre **`src/data/contenido.js`**. Ahí están, con comentarios en español:
 - fecha de inicio de la cuenta regresiva
-- el pie de página (footer, `pie`): los 3 logos, la descripción, los enlaces rápidos, el contacto (correo, teléfono, dirección — datos de EJEMPLO), las redes sociales y la línea "© 2026 UNAH – VOAE"
+- el pie de página (footer, `pie`): solo los 3 logos
 - los 10 escenarios (número, nombre, descripción corta y archivo de foto)
 - el mapa interactivo de la portada, en la sección de disciplinas (`escenariosMapa`: coordenadas, capacidad, manifestaciones y lado de la etiqueta; las fotos son las mismas de `public/img/escenarios/`)
 - los 4 contadores (número, etiqueta y detalle)
 - las fotos de la galería y sus textos alternativos
 - los participantes (nombre, sigla y logo) y los textos de la sección Participantes
-- las 3 tarjetas de cronograma y las 6 disciplinas
+- las 3 tarjetas de programación y las 6 disciplinas
 - la dirección y el mapa
 
 Los textos largos de la portada (título, "Entrada libre y gratuita", etc.) están dentro de
@@ -52,7 +52,7 @@ Los textos largos de la portada (título, "Entrada libre y gratuita", etc.) est�
    y se abre en `.../esa-carpeta/index.html`. Funciona sin configuración especial (usa HashRouter y rutas relativas).
 4. Cada vez que cambies algo (textos, fotos o PDF) vuelve a ejecutar `npm run build` y entrega `dist/` otra vez.
    Para solo cambiar un PDF o una foto ya publicada, basta con reemplazar ese archivo en el servidor
-   (dentro de `docs/cronogramas/` o `img/fotos/`).
+   (dentro de `docs/programacion/` o `img/fotos/`).
 
 ## Mapa del proyecto
 ```
@@ -61,7 +61,7 @@ Los textos largos de la portada (título, "Entrada libre y gratuita", etc.) est�
 ├─ public/            ← PDF, fotos y logos (se copian tal cual)
 ├─ src/
 │  ├─ data/contenido.js   ← textos editables
-│  ├─ componentes/        ← una pieza por sección (Header, Hero, Escenarios, Cronograma, Contadores,
+│  ├─ componentes/        ← una pieza por sección (Header, Hero, Escenarios, Programacion, Contadores,
 │  │                        Galeria, LogoAnimado, Participantes, BannerDecorativo, Disciplinas, Footer)
 │  │                        + Grafico y SeparadorConfeti (decoración)
 │  ├─ paginas/            ← Inicio (portada) y PaginaDisciplinas (/disciplinas)

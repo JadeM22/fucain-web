@@ -15,12 +15,12 @@ function TarjetaDisciplina({ d, indice }) {
       <h2>{d.nombre}</h2>
       <p>{d.textoPagina || d.texto}</p>
       <span className="espacio" />
-      <BotonPdf archivo={`${d.slug}.pdf`}>Ver cronograma (PDF)</BotonPdf>
+      <BotonPdf archivo={`${d.slug}.pdf`}>Ver programación (PDF)</BotonPdf>
     </article>
   );
 }
 
-// Página /disciplinas: cronograma por disciplina (un PDF por cada una)
+// Página /disciplinas: programación por disciplina (un PDF por cada una)
 export default function PaginaDisciplinas() {
   useRevelar();
   return (
@@ -31,11 +31,11 @@ export default function PaginaDisciplinas() {
         <Estrella estilo={{ '--s': '100px', '--c': 'var(--turquesa)', right: '-24px', bottom: '10%', '--t': '22s' }} />
         <div className="contenedor">
           <div className="volver-wrap">
-            <EnlaceSeccion id="cronograma" className="volver">
+            <EnlaceSeccion id="programacion" className="volver">
               <Icono id="i-flecha" style={{ transform: 'scaleX(-1)' }} /> Volver al inicio
             </EnlaceSeccion>
           </div>
-          <p className="eyebrow">Cronograma por disciplina</p>
+          <p className="eyebrow">Programación por disciplina</p>
           <h1 className="titulo" id="t-pag">Elige tu <span className="c2">disciplina</span> artística</h1>
           <p className="lead">Música, teatro, danza, artes visuales, literatura y cinematografía: descubre la programación de cada disciplina del festival.</p>
         </div>

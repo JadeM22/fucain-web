@@ -8,7 +8,7 @@ import './estilos/header.css';
 import './estilos/hero.css';
 import './estilos/guirnalda.css';
 import './estilos/escenarios.css';
-import './estilos/cronograma.css';
+import './estilos/programacion.css';
 import './estilos/contadores.css';
 import './estilos/galeria.css';
 import './estilos/logo-animado.css';

@@ -3,8 +3,11 @@ import Icono from '../Icono';
 import { ruta } from '../../utils/ruta';
 
 // Foto del escenario a pantalla completa (fondo tinta al 94%). Esc o clic fuera para cerrar.
-export default function VisorEscenario({ escenario, onCerrar }) {
+// indice elige cuál mostrar cuando el escenario tiene varias fotos (escenario.fotos).
+export default function VisorEscenario({ escenario, indice = 0, onCerrar }) {
   const cerrar = useRef(null);
+  const fotos = escenario.fotos || [escenario.foto];
+  const archivo = fotos[indice] ?? fotos[0];
 
   useEffect(() => {
     const previo = document.activeElement;
@@ -25,7 +28,7 @@ export default function VisorEscenario({ escenario, onCerrar }) {
   return (
     <div className="me-visor" role="dialog" aria-modal="true" aria-label={`Foto de ${escenario.nombre}`} onClick={(e) => { if (e.target === e.currentTarget) onCerrar(); }}>
       <button type="button" className="me-visor__x" aria-label="Cerrar foto" ref={cerrar} onClick={onCerrar}><Icono id="i-x" /></button>
-      <img src={ruta(`img/escenarios/${escenario.foto}`)} alt={`Foto de ${escenario.nombre}`} />
+      <img src={ruta(`img/escenarios/${archivo}`)} alt={`Foto de ${escenario.nombre}`} />
       <p className="me-visor__pie">{escenario.nombre}</p>
     </div>
   );

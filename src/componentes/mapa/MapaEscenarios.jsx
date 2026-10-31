@@ -39,7 +39,7 @@ export default function MapaEscenarios() {
   const [tarjeta, setTarjeta] = useState(false);
   const [tour, setTour] = useState('off');      // off | play | pause
   const [barra, setBarra] = useState(0);        // clave de la barra de progreso (0 = oculta)
-  const [visor, setVisor] = useState(false);
+  const [visor, setVisor] = useState(null); // null = cerrado, número = índice de la foto ampliada
 
   // Motor del recorrido (refs: lo usan los temporizadores)
   const M = useRef({ tour: 'off', actual: null, t: 0, tv: null, tt: null, td: null, restante: PARADA, inicio: 0, dwell: false, fn: {} }).current;
@@ -115,7 +115,7 @@ export default function MapaEscenarios() {
   // Teclado: ← y → cambian de escenario, Esc vuelve a la vista general
   useEffect(() => {
     const tecla = (e) => {
-      if (visor || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+      if (visor !== null || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
       const enFoco = raiz.current && raiz.current.contains(document.activeElement);
       if (!dentro.current && !enFoco) return;   // en el resto de la portada las flechas y Esc no hacen nada
       if (e.key === 'ArrowRight') { e.preventDefault(); M.fn.paso(1); }
@@ -161,7 +161,7 @@ export default function MapaEscenarios() {
               barra={tour !== 'off' && barra ? barra : 0}
               pausado={tour === 'pause'}
               onCerrar={M.fn.terminar}
-              onAmpliar={() => setVisor(true)}
+              onAmpliar={(i) => setVisor(i)}
             />
           )}
 
@@ -218,7 +218,7 @@ export default function MapaEscenarios() {
       </div>
 
       {elementos.map((el, i) => createPortal(<Marcador escenario={datos[i]} indice={i} hover={hover === i} />, el, `mk-${i}`))}
-      {visor && escenario && <VisorEscenario escenario={escenario} onCerrar={() => setVisor(false)} />}
+      {visor !== null && escenario && <VisorEscenario escenario={escenario} indice={visor} onCerrar={() => setVisor(null)} />}
     </div>
   );
 }

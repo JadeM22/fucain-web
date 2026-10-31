@@ -18,7 +18,7 @@ export default function BannerDecorativo() {
             <h2 className="titulo" id="t-banner">{bannerDecorativo.linea1} <span>{bannerDecorativo.linea2}</span></h2>
             <p>{bannerDecorativo.texto}</p>
             {/* Con HashRouter la "#" es de la ruta: EnlaceSeccion hace el scroll (suave) por código */}
-            <BotonFucain as={EnlaceSeccion} id="cronograma" color="amarillo">{bannerDecorativo.boton}</BotonFucain>
+            <BotonFucain as={EnlaceSeccion} id="programacion" color="amarillo">{bannerDecorativo.boton}</BotonFucain>
           </div>
           <div className="banner-decorativo__foto rev" style={{ '--d': 1 }}>
             <Foto archivo="talento.jpg" alt="Artista universitario presentándose en escena" numero="★" />

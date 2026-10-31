@@ -72,7 +72,9 @@
 }
 .me-tarjeta.visible { opacity: 1; translate: 0 0; pointer-events: auto; }
 .me-tarjeta__banda { flex: none; height: 8px; background: var(--fondo); }
-.me-tarjeta__foto { flex: none; display: block; width: 100%; height: 170px; padding: 0; border: 0; cursor: zoom-in; background: var(--fondo); overflow: hidden; }
+.me-tarjeta__foto { flex: none; display: flex; width: 100%; height: 170px; background: var(--fondo); overflow: hidden; }
+.me-tarjeta__foto button { flex: 1 1 0; min-width: 0; display: block; padding: 0; border: 0; cursor: zoom-in; background: none; }
+.me-tarjeta__foto--doble button + button { border-left: 2px solid rgba(255, 255, 255, .5); }
 .me-tarjeta__foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .me-tarjeta__foto--vacia {
   cursor: default; display: grid; place-items: center; padding: 14px;

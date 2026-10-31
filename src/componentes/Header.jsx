@@ -7,7 +7,6 @@ import { ruta } from '../utils/ruta';
 const MENU = [
   ['inicio', 'Inicio'],
   ['escenarios', 'Escenarios'],
-  ['cronograma', 'Cronograma'],
   ['galeria', 'Galería'],
   ['universidades', 'Participantes'],
 ];
@@ -86,7 +85,7 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <EnlaceSeccion id="cronograma" className="hdr__cta">Ver programación</EnlaceSeccion>
+        <EnlaceSeccion id="programacion" className="hdr__cta">Ver programación</EnlaceSeccion>
         <button
           className="burger"
           type="button"

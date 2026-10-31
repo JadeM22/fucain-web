@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import BotonFucain from './BotonFucain';
 import { ruta } from '../utils/ruta';
 
-// Botón que abre un PDF de public/docs/cronogramas/. Si el PDF no existe, dice "Próximamente".
+// Botón que abre un PDF de public/docs/programacion/. Si el PDF no existe, dice "Próximamente".
 export default function BotonPdf({ archivo, color, inc, children }) {
-  const url = ruta(`docs/cronogramas/${archivo}`);
+  const url = ruta(`docs/programacion/${archivo}`);
   const [existe, setExiste] = useState(true);
 
   useEffect(() => {

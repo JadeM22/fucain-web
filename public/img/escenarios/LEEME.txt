@@ -10,7 +10,10 @@ con estos nombres exactos:
 07-auditorio-2-c3.jpg     Auditorio No. 2, Edificio C3
 08-cinemateca.jpg         Cinemateca "Enrique Ponce Garay"
 09-plaza-registro.jpg     Anfiteatro de Plaza Registro
-10-alma-mater.jpg         Lobby y Mezanine, edificio Alma Mater
+
+El escenario 10 (Lobby y Mezanine, edificio Alma Mater) usa DOS fotos, una por area:
+10-alma-mater-lobby.jpg       Lobby
+10-alma-mater-mezanine.jpg    Mezanine
 
 Las fotos se recortan solas con la forma irregular de cada tarjeta.
 Si una foto no existe, la pagina muestra un marcador de color (sin error).

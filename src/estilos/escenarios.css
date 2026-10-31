@@ -32,6 +32,9 @@
 .esc:nth-child(10) { --ar: 1 / 1;    --bajar: 2rem; }
 
 .esc .ph { aspect-ratio: var(--ar, 4 / 3); }
+/* Fotos con su color natural, sin el duotono/semitono que usan otras secciones (igual que en el mapa) */
+.esc .ph::before { display: none; }
+.esc .ph > img { filter: none; mix-blend-mode: normal; }
 
 /* Un recorte irregular distinto para cada foto y los colores de la paleta en ciclo */
 .esc:nth-child(1) .ph  { clip-path: polygon(0 6%, 88% 0, 100% 90%, 12% 100%); --c: var(--turquesa); }
@@ -45,12 +48,12 @@
 .esc:nth-child(9) .ph  { clip-path: polygon(0 7%, 90% 0, 100% 100%, 8% 94%); --c: var(--rojo); --on: #fff; }
 .esc:nth-child(10) .ph { clip-path: polygon(3% 0, 100% 5%, 96% 100%, 0 95%); --c: var(--turquesa); }
 
-/* Estrella con el número */
+/* Cuadrado asimétrico con el número (recorte irregular, igual que el resto de tarjetas) */
 .esc__num {
-  position: absolute; top: -14px; left: -6px; z-index: 5;
+  position: absolute; top: -14px; left: -6px; z-index: 5; rotate: -5deg;
   font-family: var(--f-titulo); font-weight: 900; font-size: .9rem; color: #fff; background: var(--marino);
-  width: 54px; height: 54px; display: grid; place-items: center; padding-top: 4px;
-  clip-path: polygon(50% 0, 62% 30%, 98% 35%, 70% 58%, 80% 96%, 50% 74%, 20% 96%, 30% 58%, 2% 35%, 38% 30%);
+  width: 54px; height: 54px; display: grid; place-items: center; padding-top: 0;
+  clip-path: polygon(12% 0, 100% 8%, 90% 100%, 0 88%);
 }
 .esc:nth-child(3n+2) .esc__num { background: var(--morado); }
 .esc:nth-child(3n) .esc__num { background: var(--rojo); }

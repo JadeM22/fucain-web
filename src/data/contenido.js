@@ -1,6 +1,6 @@
 // ============================================================
 //  CONTENIDO EDITABLE DE FUCAIN 2026
-//  Cambia aquí los textos, cifras, universidades y el pie de página (contacto y redes incluidos).
+//  Cambia aquí los textos, cifras, universidades y los logos del pie de página.
 //  Guarda el archivo y la página se actualiza sola (npm run dev).
 // ============================================================
 
@@ -9,7 +9,7 @@
 export const fechaInicio = '2026-11-10T00:00:00-06:00';
 
 // ---------- Pie de página (footer) ----------
-// Los 3 logos (en este orden de izquierda a derecha), descripción, enlaces rápidos, contacto, redes y derechos.
+// Solo los 3 logos (en este orden de izquierda a derecha).
 // archivo: dentro de public/img/logos/ · respaldo: versión a color que se muestra si el archivo no existe
 // clase: tamaño de cada logo (se ajusta en src/estilos/footer.css para que se vean parejos)
 export const pie = {
@@ -18,30 +18,6 @@ export const pie = {
     { archivo: 'voae-blanco.png', respaldo: 'voae.png', alt: 'VOAE', clase: 'pie__logo--voae', ancho: 689, alto: 362 },
     { archivo: 'unah-blanco.png', respaldo: 'unah.png', alt: 'UNAH', clase: 'pie__logo--unah', ancho: 657, alto: 380 },
   ],
-  descripcion: 'Festival Universitario de la Cultura y el Arte para la Identidad Nacional.',
-  // seccion: id de una sección de la portada · ruta: otra página del sitio
-  enlaces: [
-    { texto: 'Escenarios', seccion: 'escenarios' },
-    { texto: 'Cronograma', seccion: 'cronograma' },
-    { texto: 'Cronograma por disciplina', ruta: '/disciplinas' },
-    { texto: 'Galería', seccion: 'galeria' },
-    { texto: 'Galería completa', ruta: '/galeria' },
-    { texto: 'Universidades', seccion: 'universidades' },
-  ],
-  // Contacto (datos de EJEMPLO: reemplazar por los oficiales)
-  contacto: {
-    correo: 'fucain@unah.edu.hn',
-    telefono: '(+504) 2216-0000',
-    telefonoLink: '+50422160000', // sin espacios ni guiones, para que el celular pueda llamar
-    direccion: 'Ciudad Universitaria, Tegucigalpa',
-  },
-  // Redes sociales (enlaces de EJEMPLO) · tipo puede ser: 'facebook', 'instagram' o 'youtube'
-  redes: [
-    { tipo: 'facebook', nombre: 'Facebook de FUCAIN', url: 'https://www.facebook.com/' },
-    { tipo: 'instagram', nombre: 'Instagram de FUCAIN', url: 'https://www.instagram.com/' },
-    { tipo: 'youtube', nombre: 'YouTube de FUCAIN', url: 'https://www.youtube.com/' },
-  ],
-  derechos: '© 2026 UNAH – VOAE',
 };
 
 // ---------- Escenarios (en este orden se muestran) ----------
@@ -96,7 +72,7 @@ export const escenarios = [
   },
   {
     num: '10', nombre: 'Lobby y Mezanine, edificio Alma Máter',
-    foto: '10-alma-mater.jpg',
+    fotos: ['10-alma-mater-lobby.jpg', '10-alma-mater-mezanine.jpg'],
     texto: 'Exposiciones de artes visuales y lecturas literarias.',
   },
 ];
@@ -123,7 +99,7 @@ export const escenariosMapa = [
   { corto: 'Aud. José C. del Valle', nombre: 'Auditorio "José Cecilio del Valle"', edificio: 'Edificio C1', capacidad: 200, modo: 'sentadas', tipos: ['visuales'], lat: 14.08678, lon: -87.16331, pos: 'arriba', foto: '05-jose-cecilio.jpg', nota: 'Conciertos, recitales y presentaciones con escenario y butacas.' },
   { corto: 'Cinemateca', nombre: 'Cinemateca "Enrique Ponce Garay"', edificio: 'Cinemateca', capacidad: 143, modo: 'sentadas', tipos: ['visuales'], lat: 14.08540, lon: -87.16285, pos: 'arriba', foto: '08-cinemateca.jpg', nota: 'Proyección de cortometrajes y muestras audiovisuales.' },
   { corto: 'Plaza Registro', nombre: 'Anfiteatro de Plaza Registro', edificio: 'Plaza Registro', capacidad: 500, modo: 'de pie', tipos: ['musica', 'escenicas'], lat: 14.08363, lon: -87.16310, pos: 'abajo', foto: '09-plaza-registro.jpg', nota: 'Escenario al aire libre para música y danza.' },
-  { corto: 'Alma Máter', nombre: 'Lobby y Mezanine, edificio Alma Máter', edificio: 'Edificio Alma Máter', capacidad: 100, modo: 'de pie', tipos: ['visuales'], lat: 14.08436, lon: -87.16151, pos: 'abajo', foto: '10-alma-mater.jpg', nota: 'Exposiciones de artes visuales y lecturas literarias.' },
+  { corto: 'Alma Máter', nombre: 'Lobby y Mezanine, edificio Alma Máter', edificio: 'Edificio Alma Máter', capacidad: 100, modo: 'de pie', tipos: ['visuales'], lat: 14.08436, lon: -87.16151, pos: 'abajo', fotos: ['10-alma-mater-lobby.jpg', '10-alma-mater-mezanine.jpg'], nota: 'Exposiciones de artes visuales y lecturas literarias.' },
 ];
 
 // ---------- Contadores (cifras animadas) ----------
@@ -173,20 +149,20 @@ export const textoParticipantes = {
   parrafo: 'La UNAH, con delegaciones de sus nueve campus, y ocho universidades del país forman el Sistema de Educación Superior presente en FUCAIN 2026.',
 };
 
-// ---------- Las 3 tarjetas de cronograma ----------
-// pdf: nombre del archivo en public/docs/cronogramas/ · ruta: página interna (sin PDF)
+// ---------- Las 3 tarjetas de programación ----------
+// pdf: nombre del archivo en public/docs/programacion/ · ruta: página interna (sin PDF)
 // color: color del botón (amarillo, blanco, rojo, morado, turquesa)
-export const cronogramas = [
+export const programacion = [
   {
     etiqueta: 'Programación',
-    titulo: 'Cronograma General',
+    titulo: 'Programación General',
     texto: 'Consulta, día por día, todas las presentaciones, horarios y escenarios del festival.',
-    pdf: 'cronograma-general.pdf',
+    pdf: 'programacion-general.pdf',
     color: 'blanco',
   },
   {
     etiqueta: 'Filtra por',
-    titulo: 'Cronograma por Disciplina',
+    titulo: 'Programación por Disciplina',
     texto: 'Música, teatro, danza, artes visuales, literatura y cinematografía. Encuentra lo tuyo.',
     ruta: '/disciplinas',
     color: 'amarillo',
@@ -201,7 +177,7 @@ export const cronogramas = [
 ];
 
 // ---------- Las 6 disciplinas ----------
-// slug = nombre del PDF (public/docs/cronogramas/<slug>.pdf) y de la foto opcional
+// slug = nombre del PDF (public/docs/programacion/<slug>.pdf) y de la foto opcional
 // disciplina-<slug>.jpg. "texto" se ve en la portada; "textoPagina" en /disciplinas.
 export const disciplinas = [
   {
@@ -238,5 +214,5 @@ export const bannerDecorativo = {
   linea1: 'Tu talento es identidad',
   linea2: 'Tu arte también es Honduras',
   texto: 'Música, teatro, danza, artes visuales, literatura o cine: el escenario es tuyo. Súmate a FUCAIN y muestra lo que sabes hacer.',
-  boton: 'Ver cronogramas', // lleva a la sección del cronograma de la portada
+  boton: 'Ver programación', // lleva a la sección de programación de la portada
 };

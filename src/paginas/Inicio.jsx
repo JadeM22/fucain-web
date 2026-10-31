@@ -1,6 +1,6 @@
 import Hero from '../componentes/Hero';
 import Escenarios from '../componentes/Escenarios';
-import Cronograma from '../componentes/Cronograma';
+import Programacion from '../componentes/Programacion';
 import Contadores from '../componentes/Contadores';
 import Galeria from '../componentes/Galeria';
 import LogoAnimado from '../componentes/LogoAnimado';
@@ -20,7 +20,7 @@ export default function Inicio() {
       <Hero />
       <Escenarios />
       <SeparadorConfeti nombre="asteriscos-1" ancho="clamp(200px, 30vw, 440px)" k="0.54" lado="izq" x="5%" />
-      <Cronograma />
+      <Programacion />
       <Contadores />
       <Galeria />
       <SeparadorConfeti nombre="asteriscos-3" ancho="clamp(70px, 8vw, 120px)" k="1.58" lado="der" x="7%" tiempo="12s" />

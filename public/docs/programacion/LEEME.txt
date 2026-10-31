@@ -1,6 +1,6 @@
-Pon aqui los PDF de los cronogramas con estos nombres exactos:
+Pon aqui los PDF de la programacion con estos nombres exactos:
 
-cronograma-general.pdf
+programacion-general.pdf
 componente-academico.pdf
 musica.pdf
 teatro.pdf

@@ -44,7 +44,7 @@ export default function Hero() {
         </p>
 
         <div className="hero__cta">
-          <BotonFucain as={EnlaceSeccion} id="cronograma" color="amarillo" inc="-1.6deg" className="cascada" style={{ '--i': 3 }}>
+          <BotonFucain as={EnlaceSeccion} id="programacion" color="amarillo" inc="-1.6deg" className="cascada" style={{ '--i': 3 }}>
             Ver programación
           </BotonFucain>
           <BotonFucain as={EnlaceSeccion} id="galeria" color="turquesa" inc="1.3deg" className="cascada" style={{ '--i': 4 }}>

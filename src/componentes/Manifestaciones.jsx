@@ -76,9 +76,9 @@ export default function Manifestaciones() {
                   {m.incluye && <p className="manif__incluye">{m.incluye}</p>}
                   <p className="manif__desc">{m.texto}</p>
                   {m.pdf ? (
-                    <BotonPdf archivo={m.pdf} color="amarillo">Ver cronograma</BotonPdf>
+                    <BotonPdf archivo={m.pdf} color="amarillo">Ver programación</BotonPdf>
                   ) : (
-                    <BotonFucain as={Link} to={m.ruta} color="amarillo">Ver cronograma</BotonFucain>
+                    <BotonFucain as={Link} to={m.ruta} color="amarillo">Ver programación</BotonFucain>
                   )}
                 </div>
               </article>

@@ -17,7 +17,7 @@ export default function Escenarios() {
               <span className="esc__num" aria-hidden="true">{e.num}</span>
               <Foto
                 carpeta="escenarios"
-                archivo={e.foto}
+                archivo={e.fotos || e.foto}
                 alt={`Escenario ${e.num}: ${e.nombre}`}
                 numero={e.num}
               />
